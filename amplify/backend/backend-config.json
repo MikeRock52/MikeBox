@@ -1,6 +1,6 @@
 {
   "auth": {
-    "mydropbox11860df8": {
+    "mydropboxbc9bb84b": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -23,31 +23,6 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
-    }
-  },
-  "function": {
-    "S3Trigger6174406f": {
-      "build": true,
-      "dependsOn": [],
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    }
-  },
-  "storage": {
-    "dropboxBucket": {
-      "dependsOn": [
-        {
-          "attributes": [
-            "Name",
-            "Arn",
-            "LambdaExecutionRole"
-          ],
-          "category": "function",
-          "resourceName": "S3Trigger6174406f"
-        }
-      ],
-      "providerPlugin": "awscloudformation",
-      "service": "S3"
     }
   }
 }
