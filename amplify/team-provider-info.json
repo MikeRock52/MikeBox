@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-mydropbox-dev-73636-authRole",
+      "UnauthRoleArn": "arn:aws:iam::596229589172:role/amplify-mydropbox-dev-73636-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::596229589172:role/amplify-mydropbox-dev-73636-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-mydropbox-dev-73636-deployment",
+      "UnauthRoleName": "amplify-mydropbox-dev-73636-unauthRole",
+      "StackName": "amplify-mydropbox-dev-73636",
+      "StackId": "arn:aws:cloudformation:us-east-1:596229589172:stack/amplify-mydropbox-dev-73636/060d0a50-73ca-11ee-99a1-0a6c6ae5bd8b",
+      "AmplifyAppId": "d2ckyr67w5fbyk"
+    },
+    "categories": {
+      "auth": {
+        "mydropbox11860df8": {}
+      },
+      "function": {
+        "S3Trigger6174406f": {}
+      }
+    }
+  }
+}
