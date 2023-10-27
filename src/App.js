@@ -11,6 +11,7 @@ import {
   // useNavigate,
 } from "react-router-dom";
 import Dashboard from './components/pages/Dashboard';
+import Profile from './components/pages/Profile';
 
 Amplify.configure(awsConfig);
 
@@ -18,9 +19,10 @@ function App({signOut, user}) {
   return (
     <Router>
     <div className="App text-lime-700">
-      <Navbar />
+      <Navbar signOut={signOut} />
       <Routes>
         <Route path="/" element={<Dashboard />} />
+        <Route path="/profile" element={<Profile user={user} signOut={signOut} />} />
       </Routes>
     </div>
     </Router>
