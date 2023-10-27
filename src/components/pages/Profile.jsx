@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState} from "react";
 import { Auth } from "aws-amplify";
 import { useFormik } from "formik";
+import ProfileForm from "./ProfileForm";
 
 function Profile({ user }) {
+  const [ updating, setUpdating ] = useState(false);
   const formik = useFormik({
     initialValues: {
       username: user.username,
@@ -21,9 +23,9 @@ function Profile({ user }) {
     },
   });
   return (
-    <div>
-      Profile
-      <button onClick={formik.handleSubmit}>Submit</button>
+    <div className="mt-8">
+      <h2 className="mb-8">Edit Profile</h2>
+      <ProfileForm formik={formik} updating={updating} />
     </div>
   );
 }
