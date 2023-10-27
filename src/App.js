@@ -4,16 +4,26 @@ import { withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import awsConfig from './aws-exports';
 import Navbar from './components/ui/nav/Navbar';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  // useNavigate,
+} from "react-router-dom";
+import Dashboard from './components/pages/Dashboard';
 
 Amplify.configure(awsConfig);
 
 function App({signOut, user}) {
   return (
+    <Router>
     <div className="App text-lime-700">
       <Navbar />
-      <h1>Hello {user.username}</h1>
-      <button onClick={signOut}>Sign out</button>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+      </Routes>
     </div>
+    </Router>
   );
 }
 
