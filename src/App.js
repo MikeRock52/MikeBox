@@ -8,7 +8,7 @@ Amplify.configure(awsConfig);
 
 function App({signOut, user}) {
   return (
-    <div className="App">
+    <div className="App text-lime-700">
       <h1>Hello {user.username}</h1>
       <button onClick={signOut}>Sign out</button>
     </div>
