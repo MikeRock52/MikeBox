@@ -5,21 +5,23 @@ import ProfileForm from "./ProfileForm";
 
 function Profile({ user }) {
   const [ updating, setUpdating ] = useState(false);
-  console.log(user)
   const formik = useFormik({
     initialValues: {
       username: user.username,
       email: user.attributes.email,
+      firstName: user.attributes.given_name,
+      lastName: user.attributes.family_name,
     },
     onSubmit: async (values) => {
       setUpdating(true);
+      console.log(values);
       try {
         const result = await Auth.updateUserAttributes(user, {
-          // preferred_username: formik.values.username,
-          // email: formik.values.email,
+          given_name: values.firstName,
+          family_name: values.lastName,
         });
-        user.preferred_username = formik.values.username;
-        user.email = formik.values.email;
+        user.given_name = values.firstName;
+        user.family_name = values.lastName;
         console.log(result);
         setUpdating(false);
       } catch (err) {
