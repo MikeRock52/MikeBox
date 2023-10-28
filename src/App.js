@@ -22,7 +22,7 @@ function App({signOut, user}) {
       <Navbar signOut={signOut} />
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/profile" element={<Profile user={user} />} />
+        <Route path="/profile" element={<Profile user={user} signOut={signOut} />} />
       </Routes>
     </div>
     </Router>

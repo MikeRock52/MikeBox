@@ -16,7 +16,7 @@ function ProfileForm({ formik, updating }) {
           >
             Username
           </label>
-          <div className="mt-2.5 bg-lime-100">
+          <div className="mt-2.5">
             <input
               type="text"
               name="username"
@@ -24,7 +24,7 @@ function ProfileForm({ formik, updating }) {
               onChange={formik.handleChange}
               autoComplete="username"
               disabled
-              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-gray-400 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-lime-300 focus:ring-2 focus:ring-inset focus:ring-gray-400 sm:text-sm sm:leading-6"
             />
           </div>
         </div>
@@ -43,7 +43,7 @@ function ProfileForm({ formik, updating }) {
               onChange={formik.handleChange}
               autoComplete="email"
               disabled
-              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-gray-400 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-lime-300 focus:ring-2 focus:ring-inset focus:ring-gray-400 sm:text-sm sm:leading-6"
             />
           </div>
         </div>
@@ -62,7 +62,7 @@ function ProfileForm({ formik, updating }) {
               onChange={formik.handleChange}
               autoComplete="given-name"
               placeholder="No first name provided"
-              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-gray-400 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-lime-300 focus:ring-2 focus:ring-inset focus:ring-gray-400 sm:text-sm sm:leading-6"
             />
           </div>
         </div>
@@ -81,7 +81,7 @@ function ProfileForm({ formik, updating }) {
               onChange={formik.handleChange}
               autoComplete="family-name"
               placeholder="No last name provided"
-              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-gray-400 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-lime-300 focus:ring-2 focus:ring-inset focus:ring-gray-400 sm:text-sm sm:leading-6"
             />
           </div>
         </div>
