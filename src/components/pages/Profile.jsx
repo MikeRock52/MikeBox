@@ -1,10 +1,11 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { Auth } from "aws-amplify";
 import { useFormik } from "formik";
 import ProfileForm from "./ProfileForm";
+import ChangePassword from "./ChangePassword";
 
 function Profile({ user }) {
-  const [ updating, setUpdating ] = useState(false);
+  const [updating, setUpdating] = useState(false);
   const formik = useFormik({
     initialValues: {
       username: user.username,
@@ -14,7 +15,6 @@ function Profile({ user }) {
     },
     onSubmit: async (values) => {
       setUpdating(true);
-      console.log(values);
       try {
         const result = await Auth.updateUserAttributes(user, {
           given_name: values.firstName,
@@ -31,9 +31,16 @@ function Profile({ user }) {
     },
   });
   return (
-    <div className="mt-8">
-      <h2 className="mb-8">Edit Profile</h2>
-      <ProfileForm formik={formik} updating={updating} />
+    <div className="md:grid md:grid-cols-2 mb-8">
+      <div className="mt-8">
+        <h2 className="mb-8">Edit Profile</h2>
+        <ProfileForm formik={formik} updating={updating} />
+      </div>
+      {/* <hr className="border-b-2 border-lime-50 w-96 mx-auto mt-8 text-center" /> */}
+      <div className="mt-8">
+        <h2 className="mb-8">Change Password</h2>
+        <ChangePassword formik={formik} updating={updating}/>
+      </div>
     </div>
   );
 }

@@ -6,9 +6,9 @@ function ProfileForm({ formik, updating }) {
       action="#"
       onSubmit={formik.handleSubmit}
       method="POST"
-      className="text-left px-8 sm:px-12"
+      className="text-left px-8 sm:px-12 md:px-0"
     >
-      <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:w-3/4 md:w-2/4 lg:w-2/5 mx-auto">
+      <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:w-3/4 md:w-3/4 mx-auto">
         <div className="">
           <label
             htmlFor="username"
@@ -61,6 +61,7 @@ function ProfileForm({ formik, updating }) {
               value={formik.values.firstName}
               onChange={formik.handleChange}
               autoComplete="given-name"
+              placeholder="No first name provided"
               className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-gray-400 sm:text-sm sm:leading-6"
             />
           </div>
@@ -79,6 +80,7 @@ function ProfileForm({ formik, updating }) {
               value={formik.values.lastName}
               onChange={formik.handleChange}
               autoComplete="family-name"
+              placeholder="No last name provided"
               className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-gray-400 sm:text-sm sm:leading-6"
             />
           </div>
