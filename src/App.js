@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 import Dashboard from './components/pages/Dashboard';
 import Profile from './components/pages/Profile';
+import Toast from './components/Toast';
 
 Amplify.configure(awsConfig);
 
@@ -20,6 +21,7 @@ function App({signOut, user}) {
     <Router>
     <div className="App text-lime-700">
       <Navbar signOut={signOut} />
+      <Toast />
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/profile" element={<Profile user={user} signOut={signOut} />} />

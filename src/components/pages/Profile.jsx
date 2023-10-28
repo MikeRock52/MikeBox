@@ -3,11 +3,11 @@ import { Auth } from "aws-amplify";
 import { useFormik } from "formik";
 import ProfileForm from "./ProfileForm";
 import ChangePassword from "./ChangePassword";
+import toast from 'react-hot-toast';
 
 function Profile({ user, signOut }) {
   const [updating, setUpdating] = useState(false);
   const [changing, setChanging] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
   const formik = useFormik({
     initialValues: {
       username: user.username,
@@ -46,9 +46,10 @@ function Profile({ user, signOut }) {
       //   formik.values.newPassword,
       // );
       // console.log(data);
-      setTimeout(() => {
-        signOut();
-      }, 5000);
+      toast.success('Your password was updated successfully. Redirecting to sign in page...')
+      // setTimeout(() => {
+      //   signOut();
+      // }, 5000);
       setChanging(false);
     } catch (err) {
       console.log(err);

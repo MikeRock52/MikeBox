@@ -53,7 +53,7 @@ function ChangePassword({ formik, updating, changePassword }) {
             }}
             className="cursor-pointer mt-2"
           >
-            {showPassword ? 'Hide Password' : 'Show Password'}
+            {showPassword ? "Hide Password" : "Show Password"}
           </button>
         </div>
         <div className="mt-2">
