@@ -1,9 +1,15 @@
-import React from 'react'
+import React from "react";
 
 function Dashboard() {
   return (
-    <div>Dashboard</div>
-  )
+    <div>
+      <div className="">
+        <button className="grid grid-col-1 align-middle rounded-md border-2 border-lime-700 mx-12 w-32 h-20 hover:bg-lime-300">
+          <h4 className="w-fit h-fit my-auto ml-4 font-bold">Upload</h4>
+        </button>
+      </div>
+    </div>
+  );
 }
 
-export default Dashboard
+export default Dashboard;

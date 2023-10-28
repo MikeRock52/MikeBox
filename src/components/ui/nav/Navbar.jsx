@@ -17,7 +17,7 @@ function classNames(...classes) {
 
 export default function Navbar({signOut}) {
   return (
-    <Disclosure as="nav" className="bg-lime-700 py-1">
+    <Disclosure as="nav" className="bg-lime-700 py-1 shadow-md mb-5 shadow-gray-300">
       {({ open }) => (
         <>
           <div className="text-lime-200 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
