@@ -27,9 +27,11 @@ function Profile({ user, signOut }) {
         user.given_name = values.firstName;
         user.family_name = values.lastName;
         console.log(result);
+        toast.success('Profile updated successfully!');
         setUpdating(false);
       } catch (err) {
         console.log(err);
+        toast.error('Error updating your profile. Please try again...')
         setUpdating(false);
       }
     },
@@ -40,24 +42,25 @@ function Profile({ user, signOut }) {
     setChanging(true);
     console.log(formik.values.oldPassword, formik.values.newPassword);
     try {
-      // const data = await Auth.changePassword(
-      //   user,
-      //   formik.values.oldPassword,
-      //   formik.values.newPassword,
-      // );
-      // console.log(data);
-      toast.success('Your password was updated successfully. Redirecting to sign in page...')
-      // setTimeout(() => {
-      //   signOut();
-      // }, 5000);
+      const data = await Auth.changePassword(
+        user,
+        formik.values.oldPassword,
+        formik.values.newPassword,
+      );
+      console.log(data);
+      toast.success('Your password was updated successfully. Please sign in with your new password');
+      setTimeout(() => {
+        signOut();
+      }, 5010);
       setChanging(false);
     } catch (err) {
       console.log(err);
+      toast.error('Error updating your password. Please enter correct value and try again.');
       setChanging(false);
     }
   }
   return (
-    <div className="md:grid md:grid-cols-2 mb-8">
+    <div className="md:grid md:grid-cols-2 mb-8 mt-8">
       <div className="mt-8">
         <h2 className="mb-8">Edit Profile</h2>
         <ProfileForm formik={formik} updating={updating} />

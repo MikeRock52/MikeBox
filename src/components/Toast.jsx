@@ -27,12 +27,12 @@ function Toast() {
         error: {
           duration: 5000,
           style: {
-            background: "#f0d97f",
-            color: "#806600",
+            background: "#b91c1c",
+            color: "#fecaca",
           },
           iconTheme: {
-            primary: "#806600",
-            secondary: "#f0d97f",
+            primary: "#fecaca",
+            secondary: "#b91c1c",
           },
         },
       }}
