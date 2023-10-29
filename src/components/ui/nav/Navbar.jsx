@@ -124,7 +124,7 @@ export default function Navbar({signOut}) {
                   as="a"
                   href={item.href}
                   className={classNames(
-                    item.current ? 'bg-lime-900 text-lime-200' : 'text-lime-200 hover:bg-lime-600',
+                    item.current ? 'bg-lime-900 text-lime-200' : 'text-lime-200 hover:bg-lime-800',
                     'block rounded-md px-3 py-2 text-base font-medium'
                   )}
                   aria-current={item.current ? 'page' : undefined}

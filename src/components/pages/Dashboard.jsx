@@ -11,7 +11,7 @@ function Dashboard() {
         <FileActions setUpload={setUpload} upload={upload} />
       </div>
       {upload && (
-        <div className="mt-8 sm:w-4/5 md:w-3/5 mx-auto">
+        <div className="mt-8 sm:w-4/5 md:w-3/6 mx-auto">
           <StorageManager accessLevel="private" autoUpload={false} maxFileCount={5} isResumable onUploadSuccess={() => {alert("Uploaded!")}} />
         </div>
       )}
