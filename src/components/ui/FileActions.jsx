@@ -3,7 +3,7 @@ import { UploadIcon, CreateFolder, ToFolder, ViewFiles } from "../Icons";
 
 function FileActions({ upload, setUpload }) {
   return (
-    <div className="flex justify-center flex-wrap">
+    <div className="flex justify-center flex-wrap mt-8">
       <button
         onClick={() => {setUpload(!upload)}}
         className="fileAction"
