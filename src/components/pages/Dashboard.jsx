@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FileActions from "../ui/FileActions";
-import { StorageManager } from '@aws-amplify/ui-react-storage';
-import '@aws-amplify/ui-react/styles.css';
+import "@aws-amplify/ui-react/styles.css";
+import FileUploader from "../ui/FileUploader";
 
 function Dashboard() {
   const [upload, setUpload] = useState(false);
@@ -11,9 +11,7 @@ function Dashboard() {
         <FileActions setUpload={setUpload} upload={upload} />
       </div>
       {upload && (
-        <div className="mt-8 sm:w-4/5 md:w-3/6 mx-auto">
-          <StorageManager accessLevel="private" autoUpload={false} maxFileCount={5} isResumable onUploadSuccess={() => {alert("Uploaded!")}} />
-        </div>
+        <FileUploader setUpload={setUpload} />
       )}
     </div>
   );
