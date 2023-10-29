@@ -1,5 +1,5 @@
 import React from "react";
-import { UploadIcon } from "../Icons";
+import { UploadIcon, CreateFolder, EditPDF } from "../Icons";
 
 function FileActions() {
   async function uploadFile() {
@@ -7,16 +7,27 @@ function FileActions() {
   }
 
   return (
-    <div className="">
+    <div className="grid grid-cols-3 mx-16">
       <button
         onClick={uploadFile}
-        className="grid grid-col-1 align-middle rounded-md border-2 border-lime-700 mx-12 w-32 h-20 hover:bg-lime-300"
+        className="grid align-middle rounded-md border-2 border-lime-700 mx-12 w-32 h-20 hover:bg-lime-300"
       >
         {UploadIcon()}
-        <h4 className="w-fit h-fit my-auto ml-4 font-bold">Upload</h4>
+        <h4 className="w-fit h-fit mx-auto font-bold">Upload</h4>
       </button>
-      <button className="grid grid-col-1 align-middle rounded-md border-2 border-lime-700 mx-12 w-32 h-20 hover:bg-lime-300">
-        <h4 className="w-fit h-fit my-auto ml-4 font-bold">Create Folder</h4>
+      <button
+        onClick={uploadFile}
+        className="grid align-middle rounded-md border-2 border-lime-700 mx-12 w-32 h-20 hover:bg-lime-300"
+      >
+        {CreateFolder()}
+        <h4 className="w-fit h-fit mx-auto font-bold">Create Folder</h4>
+      </button>
+      <button
+        onClick={uploadFile}
+        className="grid align-middle rounded-md border-2 border-lime-700 mx-12 w-32 h-20 hover:bg-lime-300"
+      >
+        {EditPDF()}
+        <h4 className="w-fit h-fit mx-auto font-bold">Edit PDF</h4>
       </button>
     </div>
   );
