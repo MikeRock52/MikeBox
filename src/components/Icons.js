@@ -6,7 +6,7 @@ function UploadIcon() {
       viewBox="0 0 24 24"
       stroke-width="2.2"
       stroke="currentColor"
-      class="w-6 h-6 mx-auto mt-2 mb-0"
+      className="w-6 h-6 mx-auto mt-2 mb-0"
     >
       <path
         stroke-linecap="round"
@@ -25,7 +25,7 @@ function CreateFolder() {
       viewBox="0 0 24 24"
       stroke-width="2.2"
       stroke="currentColor"
-      class="w-6 h-6 mx-auto mt-2 mb-0"
+      className="w-6 h-6 mx-auto mt-2 mb-0"
     >
       <path
         stroke-linecap="round"
@@ -36,7 +36,21 @@ function CreateFolder() {
   );
 }
 
-function EditPDF() {
+function ToFolder() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 576 512"
+      className="w-6 h-6 mx-auto mt-2 mb-0"
+      fill="currentColor"
+      stroke="currentColor"
+    >
+      <path d="M64 32C64 14.3 49.7 0 32 0S0 14.3 0 32v96V384c0 35.3 28.7 64 64 64H256V384H64V160H256V96H64V32zM288 192c0 17.7 14.3 32 32 32H544c17.7 0 32-14.3 32-32V64c0-17.7-14.3-32-32-32H445.3c-8.5 0-16.6-3.4-22.6-9.4L409.4 9.4c-6-6-14.1-9.4-22.6-9.4H320c-17.7 0-32 14.3-32 32V192zm0 288c0 17.7 14.3 32 32 32H544c17.7 0 32-14.3 32-32V352c0-17.7-14.3-32-32-32H445.3c-8.5 0-16.6-3.4-22.6-9.4l-13.3-13.3c-6-6-14.1-9.4-22.6-9.4H320c-17.7 0-32 14.3-32 32V480z" />
+    </svg>
+  );
+}
+
+function ViewFiles() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -44,15 +58,15 @@ function EditPDF() {
       viewBox="0 0 24 24"
       stroke-width="2.2"
       stroke="currentColor"
-      class="w-6 h-6 mx-auto mt-2 mb-0"
+      className="w-6 h-6 mx-auto mt-2 mb-0"
     >
       <path
         stroke-linecap="round"
         stroke-linejoin="round"
-        d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+        d="M7.5 3.75H6A2.25 2.25 0 003.75 6v1.5M16.5 3.75H18A2.25 2.25 0 0120.25 6v1.5m0 9V18A2.25 2.25 0 0118 20.25h-1.5m-9 0H6A2.25 2.25 0 013.75 18v-1.5M15 12a3 3 0 11-6 0 3 3 0 016 0z"
       />
     </svg>
   );
 }
 
-export { UploadIcon, CreateFolder, EditPDF };
+export { UploadIcon, CreateFolder, ToFolder, ViewFiles };

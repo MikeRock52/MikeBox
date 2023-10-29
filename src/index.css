@@ -16,3 +16,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.fileAction {
+  @apply grid align-middle rounded-md border-2 border-lime-700 my-1 mx-1 md:mx-5 w-32 h-[82px] hover:bg-lime-300 shadow shadow-gray-400;
+}
