@@ -2,15 +2,12 @@
   "resourceName": "dropbox",
   "policyUUID": "8f84866d",
   "bucketName": "mydropbox",
-  "storageAccess": "authAndGuest",
-  "guestAccess": [
-    "READ"
-  ],
+  "storageAccess": "auth",
+  "guestAccess": [],
   "authAccess": [
     "CREATE_AND_UPDATE",
     "READ",
     "DELETE"
   ],
-  "triggerFunction": "S3Triggerfecdb59e",
   "groupAccess": {}
 }

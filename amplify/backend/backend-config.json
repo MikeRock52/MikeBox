@@ -25,26 +25,10 @@
       "service": "Cognito"
     }
   },
-  "function": {
-    "S3Triggerfecdb59e": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    }
-  },
+  "function": {},
   "storage": {
     "dropbox": {
-      "dependsOn": [
-        {
-          "attributes": [
-            "Name",
-            "Arn",
-            "LambdaExecutionRole"
-          ],
-          "category": "function",
-          "resourceName": "S3Triggerfecdb59e"
-        }
-      ],
+      "dependsOn": [],
       "providerPlugin": "awscloudformation",
       "service": "S3"
     }
