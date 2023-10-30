@@ -43,13 +43,13 @@ function FileList({ upload }) {
           type="list"
           items={files}
           padding="2rem"
-          // maxWidth="1100px"
           margin="0 auto"
           justifyContent="center"
           gap="small"
           direction="row"
           wrap="wrap"
           isPaginated
+          itemsPerPage={5}
           isSearchable
           searchPlaceholder="Type to search file..."
         >
@@ -67,10 +67,12 @@ function FileList({ upload }) {
                 <img
                   src={getThumbnail(fileInfo[index]) || file}
                   alt={fileInfo[index].key}
-                  className="h-full w-full"
+                  className="h-full w-full object-cover"
                 />
-                <div className="absolute top-0 left-0 opacity-70 h-full w-full bg-lime-200 invisible group-hover:visible" />
-                <h4 className="absolute top-0 left-0 ml-3 mt-4 font-bold text-black invisible group-hover:visible">{fileInfo[index].key}</h4>
+                <div className="absolute top-0 left-0 opacity-75 h-full w-full bg-lime-200 invisible group-hover:visible" />
+                <h4 className="absolute top-0 left-0 ml-3 mt-4 font-bold text-black invisible group-hover:visible">
+                  {fileInfo[index].key}
+                </h4>
               </Card>
             </div>
           )}
