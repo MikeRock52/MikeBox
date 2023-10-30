@@ -46,18 +46,18 @@ const theme = {
           },
         },
       },
-      card: {
-        backgroundColor: { value: '{colors.background.secondary}' },
-        outlined: {
-          borderColor: { value: '{colors.black}' },
-        },
-      },
-      heading: {
-        color: { value: '{colors.brand.secondary[80]}' },
-      },
-      text: {
-        color: { value: '{colors.brand.primary[80]}' },
-      },
+    //   card: {
+    //     backgroundColor: { value: '{colors.background.secondary}' },
+    //     outlined: {
+    //       borderColor: { value: '{colors.black}' },
+    //     },
+    //   },
+    //   heading: {
+    //     color: { value: '{colors.brand.secondary[80]}' },
+    //   },
+    //   text: {
+    //     color: { value: '{colors.brand.primary[80]}' },
+    //   },
     },
   },
 };

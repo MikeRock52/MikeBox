@@ -3,59 +3,45 @@ import { Storage } from "aws-amplify";
 import {
   Collection,
   Card,
-  Heading,
+  Image,
   Text,
   Flex,
   useTheme,
   ThemeProvider,
 } from "@aws-amplify/ui-react";
 import theme from "./collectionTheme";
+import getThumbnail from "../../utilities";
 
 function FileList({ upload }) {
-  const [files, setFiles] = useState(null);
+  const [fileInfo, setFileInfo] = useState([]);
+  const [files, setFiles] = useState([]);
 
-  function fetchAllFiles() {
-    Storage.list("", { level: "private" }, { pageSize: 2 })
-      .then(({ results }) => setFiles(results))
-      .catch((err) => console.log(err));
+  async function fetchAllFiles() {
+    const { results } = await Storage.list("", { level: "private" });
+    setFileInfo(results);
+    const allFiles = await Promise.all(
+      results.map(async (file) => {
+        // console.log(file.contentType)
+        return await Storage.get(file.key, { level: "private" });
+      })
+    );
+    setFiles(allFiles);
   }
 
   useEffect(() => {
     fetchAllFiles();
   }, [upload]);
 
-  files && console.log(files);
+  console.log(fileInfo);
 
   const { tokens } = useTheme();
-  const items = [
-    {
-      title: "Fiordland National Park",
-      description:
-        "This national park includes the famous fjords of Milford, Dusky and Doubtful Sounds.",
-    },
-    {
-      title: "Bay of Islands, North Island",
-      description:
-        "Three hours north of Auckland, this area features over 144 islands to explore.",
-    },
-    {
-      title: "Queenstown, South Island",
-      description:
-        "This hopping town is New Zealand's adventure capital and is located right on Lake Wakatipu.",
-    },
-    {
-      title: "Queenstown, South Island",
-      description:
-        "This hopping town is New Zealand's adventure capital and is located right on Lake Wakatipu.",
-    },
-  ];
 
   return (
-    <div>
+    <div className="">
       <ThemeProvider theme={theme} colorMode="dark">
         <Collection
           type="list"
-          items={items}
+          items={files}
           padding="2rem"
           // maxWidth="1100px"
           margin="0 auto"
@@ -65,25 +51,28 @@ function FileList({ upload }) {
           wrap="wrap"
           isPaginated
           isSearchable
-          searchNoResultsFound={
-            <Flex justifyContent="center">
-              <Text color="#b91c1c" fontSize="1rem">
-                No files found, please try again
-              </Text>
-            </Flex>
-          }
           searchPlaceholder="Type to search file..."
         >
-          {(item, index) => (
-            <Card
-              key={index}
-              padding={tokens.space.medium}
-              maxWidth="180px"
-              fontSize={tokens.fontSizes.xs}
-            >
-              <Heading level={4}>{item.title}</Heading>
-              <Text>{item.description}</Text>
-            </Card>
+          {(file, index) => (
+            <div className="relative">
+              <Card
+                key={index}
+                lineHeight="small"
+                backgroundColor="transparent"
+                variation="elevated"
+                width="200px"
+                height="200px"
+                className="group hover:opacity-75"
+              >
+                <img
+                  src={getThumbnail(fileInfo[index]) || file}
+                  alt={fileInfo[index].key}
+                  className="h-full w-full"
+                />
+                <div className="absolute top-0 left-0 opacity-70 h-full w-full bg-lime-200 invisible group-hover:visible" />
+                <h4 className="absolute top-0 left-0 ml-3 mt-4 font-bold text-black invisible group-hover:visible">{fileInfo[index].key}</h4>
+              </Card>
+            </div>
           )}
         </Collection>
       </ThemeProvider>
