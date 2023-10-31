@@ -5,11 +5,18 @@ import {
   Card,
   useTheme,
   ThemeProvider,
+  Menu,
+  IconsProvider,
+  MenuItem,
+  MenuButton,
 } from "@aws-amplify/ui-react";
-import theme from "./collectionTheme";
-import getThumbnail from "../../utilities";
-import { FiMoreVertical } from 'react-icons/fi';
-
+import theme from "./theme";
+import getThumbnail, {
+  calculateFileSize,
+  getFileExtension,
+} from "../../utilities";
+import { FiMoreHorizontal } from "react-icons/fi";
+import "./files.css";
 
 function FileList({ upload }) {
   const [fileInfo, setFileInfo] = useState([]);
@@ -43,7 +50,7 @@ function FileList({ upload }) {
           padding="2rem"
           margin="0 auto"
           justifyContent="center"
-          gap="small"
+          gap="large"
           direction="row"
           wrap="wrap"
           isPaginated
@@ -68,11 +75,27 @@ function FileList({ upload }) {
                   className="h-full w-full object-contain"
                 />
                 <div className="absolute top-0 left-0 opacity-75 h-full w-full bg-lime-200 invisible group-hover:visible" />
-                <div className="absolute top-0 left-0 ml-3 mt-4 w-3/5 text-left text-black invisible group-hover:visible">
-                  <h4 className="font-bold">{fileInfo[index].key}</h4>
-                  <p className="mt-1">{fileInfo[index].size/1000}kb</p>
+                <div className="absolute bottom-0 left-0 ml-3 mb-4 w-fit text-left text-black invisible group-hover:visible">
+                  <h4 className="font-bold mr-2">{fileInfo[index].key}</h4>
+                  <p className="mt-1">
+                    {getFileExtension(fileInfo[index].key).toUpperCase()} ~{" "}
+                    {calculateFileSize(fileInfo[index].size)}
+                  </p>
                 </div>
-                <FiMoreVertical />
+                <div className="absolute top-0 left-0 ml-3 mt-4 text-black">
+                  <Menu
+                    trigger={
+                      <button className="">
+                        <FiMoreHorizontal fontSize="24" />
+                      </button>
+                    }
+                    menuAlign="start"
+                  >
+                    <MenuItem>Rename</MenuItem>
+                    <MenuItem>Share</MenuItem>
+                    <MenuItem>Delete</MenuItem>
+                  </Menu>
+                </div>
               </Card>
             </div>
           )}

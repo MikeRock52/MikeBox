@@ -11,8 +11,13 @@ function getFileExtension(filename) {
   return filename.split(".").pop().toLowerCase();
 }
 
-function calculateSize(sizeInBytes) {
-  
+function calculateFileSize(sizeInBytes) {
+  const kb = (sizeInBytes / 1024).toFixed(2);
+  if (kb < 1024) {
+    return `${kb}kb`;
+  } else {
+    return `${(kb / 1024).toFixed(2)}mb`;
+  }
 }
 
 const icons = {
@@ -37,4 +42,4 @@ const imageExtensions = [
 
 
 export default getThumnail;
-export { getFileExtension };
+export { getFileExtension, calculateFileSize };

@@ -1,5 +1,5 @@
 const theme = {
-  name: "collection-theme",
+  name: "global-theme",
   tokens: {
     components: {
       collection: {
@@ -46,18 +46,25 @@ const theme = {
           },
         },
       },
-    //   card: {
-    //     backgroundColor: { value: '{colors.background.secondary}' },
-    //     outlined: {
-    //       borderColor: { value: '{colors.black}' },
-    //     },
-    //   },
-    //   heading: {
-    //     color: { value: '{colors.brand.secondary[80]}' },
-    //   },
-    //   text: {
-    //     color: { value: '{colors.brand.primary[80]}' },
-    //   },
+      menuItem: {
+        button: {
+          _hover: {
+            backgroundColor: '#a3e635',
+          },
+        },
+      },
+      //   card: {
+      //     backgroundColor: { value: '{colors.background.secondary}' },
+      //     outlined: {
+      //       borderColor: { value: '{colors.black}' },
+      //     },
+      //   },
+      //   heading: {
+      //     color: { value: '{colors.brand.secondary[80]}' },
+      //   },
+      //   text: {
+      //     color: { value: '{colors.brand.primary[80]}' },
+      //   },
     },
   },
 };
