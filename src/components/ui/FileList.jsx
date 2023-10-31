@@ -2,17 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Storage } from "aws-amplify";
 import {
   Collection,
-  Card,
   ThemeProvider,
-  Menu,
-  MenuItem,
 } from "@aws-amplify/ui-react";
 import theme from "./theme";
-import getThumbnail, {
-  calculateFileSize,
-  getFileExtension,
-} from "../../utilities";
-import { FiMoreHorizontal } from "react-icons/fi";
 import "./files.css";
 import FileCard from "./FileCard";
 

@@ -38,7 +38,7 @@ function FileCard({ index, file, fileInfo }) {
                 <FiMoreHorizontal fontSize="24" />
               </button>
             }
-            backgroundColor="transparent"
+            backgroundColor="#fff"
           >
             <MenuItem>Rename</MenuItem>
             <MenuItem>Share</MenuItem>
