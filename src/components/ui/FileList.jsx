@@ -14,6 +14,7 @@ import getThumbnail, {
 } from "../../utilities";
 import { FiMoreHorizontal } from "react-icons/fi";
 import "./files.css";
+import FileCard from "./FileCard";
 
 function FileList({ upload }) {
   const [fileInfo, setFileInfo] = useState([]);
@@ -54,45 +55,7 @@ function FileList({ upload }) {
           searchPlaceholder="Type to search file..."
         >
           {(file, index) => (
-            <div className="relative">
-              <Card
-                key={index}
-                lineHeight="small"
-                backgroundColor="transparent"
-                variation="elevated"
-                width="280px"
-                height="200px"
-                className="group hover:opacity-75"
-              >
-                <img
-                  src={getThumbnail(fileInfo[index]) || file}
-                  alt={fileInfo[index].key}
-                  className="h-full w-full object-contain"
-                />
-                <div className="absolute top-0 left-0 opacity-75 h-full w-full bg-lime-200 invisible group-hover:visible" />
-                <div className="absolute bottom-0 left-0 ml-3 mb-4 w-fit text-left text-black invisible group-hover:visible">
-                  <h4 className="font-bold mr-2">{fileInfo[index].key}</h4>
-                  <p className="mt-1">
-                    {getFileExtension(fileInfo[index].key).toUpperCase()} ~{" "}
-                    {calculateFileSize(fileInfo[index].size)}
-                  </p>
-                </div>
-                <div className="absolute top-0 left-0 ml-3 mt-4 text-black">
-                  <Menu
-                    trigger={
-                      <button className="">
-                        <FiMoreHorizontal fontSize="24" />
-                      </button>
-                    }
-                    backgroundColor="transparent"
-                  >
-                    <MenuItem>Rename</MenuItem>
-                    <MenuItem>Share</MenuItem>
-                    <MenuItem>Delete</MenuItem>
-                  </Menu>
-                </div>
-              </Card>
-            </div>
+            <FileCard file={file} index={index} fileInfo={fileInfo} />
           )}
         </Collection>
       </ThemeProvider>

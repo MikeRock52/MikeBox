@@ -1,41 +1,53 @@
 import React from "react";
-import {
-  Card,
-  Image,
-  Text,
-  useTheme,
-  ThemeProvider,
-} from "@aws-amplify/ui-react";
-import theme from "./collectionTheme";
+import { Card, Menu, MenuItem } from "@aws-amplify/ui-react";
+import getThumbnail, {
+  calculateFileSize,
+  getFileExtension,
+} from "../../utilities";
+import { FiMoreHorizontal } from "react-icons/fi";
 
-function ImageCard({ index, file }) {
-  const tokens = useTheme;
-
+function FileCard({ index, file, fileInfo }) {
   return (
-    <div>
-      <ThemeProvider theme={theme} colorMode="dark">
-        <Card
-          key={index}
-          padding={tokens.space.medium}
-          maxWidth="180px"
-          fontSize={tokens.fontSizes.xs}
-        >
-          <Image
-            alt="Amplify logo"
-            src={file.key}
-            objectFit="initial"
-            objectPosition="50% 50%"
-            backgroundColor="initial"
-            height="75%"
-            width="75%"
-            opacity="100%"
-            onClick={() => alert("📸 Say cheese!")}
-          />
-          {/* <Text>{item.description}</Text> */}
-        </Card>
-      </ThemeProvider>
+    <div className="relative">
+      <Card
+        key={index}
+        lineHeight="small"
+        backgroundColor="transparent"
+        variation="elevated"
+        width="280px"
+        height="200px"
+        className="group hover:opacity-75"
+      >
+        <img
+          src={getThumbnail(fileInfo[index]) || file}
+          alt={fileInfo[index].key}
+          className="h-full w-full object-contain"
+        />
+        <div className="absolute top-0 left-0 opacity-75 h-full w-full bg-lime-200 invisible group-hover:visible" />
+        <div className="absolute bottom-0 left-0 ml-3 mb-4 w-fit text-left text-black invisible group-hover:visible">
+          <h4 className="font-bold mr-2">{fileInfo[index].key}</h4>
+          <p className="mt-1">
+            {getFileExtension(fileInfo[index].key).toUpperCase()} ~{" "}
+            {calculateFileSize(fileInfo[index].size)}
+          </p>
+        </div>
+        <div className="absolute top-0 left-0 ml-3 mt-4 text-black">
+          <Menu
+            trigger={
+              <button className="">
+                <FiMoreHorizontal fontSize="24" />
+              </button>
+            }
+            backgroundColor="transparent"
+          >
+            <MenuItem>Rename</MenuItem>
+            <MenuItem>Share</MenuItem>
+            <MenuItem>Delete</MenuItem>
+          </Menu>
+        </div>
+      </Card>
     </div>
   );
 }
 
-export default ImageCard;
+export default FileCard;
