@@ -7,8 +7,8 @@ import FileList from "../ui/FileList";
 function Dashboard() {
   const [upload, setUpload] = useState(false);
   return (
-    <div className="mx-5 md:mx-12">
-      <div className="">
+    <div className="">
+      <div className="mx-5 md:mx-12">
         <FileActions setUpload={setUpload} upload={upload} />
       </div>
       {upload && (

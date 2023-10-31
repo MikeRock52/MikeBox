@@ -3,12 +3,9 @@ import { Storage } from "aws-amplify";
 import {
   Collection,
   Card,
-  useTheme,
   ThemeProvider,
   Menu,
-  IconsProvider,
   MenuItem,
-  MenuButton,
 } from "@aws-amplify/ui-react";
 import theme from "./theme";
 import getThumbnail, {
@@ -39,10 +36,8 @@ function FileList({ upload }) {
 
   console.log(fileInfo);
 
-  const { tokens } = useTheme();
-
   return (
-    <div className="">
+    <div className="mb-12">
       <ThemeProvider theme={theme} colorMode="dark">
         <Collection
           type="list"
@@ -54,7 +49,7 @@ function FileList({ upload }) {
           direction="row"
           wrap="wrap"
           isPaginated
-          itemsPerPage={5}
+          itemsPerPage={6}
           isSearchable
           searchPlaceholder="Type to search file..."
         >
@@ -65,7 +60,7 @@ function FileList({ upload }) {
                 lineHeight="small"
                 backgroundColor="transparent"
                 variation="elevated"
-                width="300px"
+                width="280px"
                 height="200px"
                 className="group hover:opacity-75"
               >
@@ -89,7 +84,7 @@ function FileList({ upload }) {
                         <FiMoreHorizontal fontSize="24" />
                       </button>
                     }
-                    menuAlign="start"
+                    backgroundColor="transparent"
                   >
                     <MenuItem>Rename</MenuItem>
                     <MenuItem>Share</MenuItem>

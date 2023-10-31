@@ -1,3 +1,27 @@
+button.amplify-tabs-item {
+  background-color: #ecfccb;
+  border-color: #65a30d;
+  color: #65a30d;
+}
+
+button.amplify-tabs-item:hover {
+  color: #84cc16;
+}
+
+button.amplify-tabs-item[data-state="active"] {
+  border-color: #d9f99d;
+  color: #65a30d;
+}
+
+form button.amplify-button {
+  background-color: #65a30d;
+  color: #fff;
+}
+
+[data-amplify-footer] button {
+  color: #65a30d;
+}
+
 .App {
   text-align: center;
 }

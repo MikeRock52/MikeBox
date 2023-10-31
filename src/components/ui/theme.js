@@ -7,14 +7,14 @@ const theme = {
           current: {
             color: { value: "#d9f99d" },
             backgroundColor: {
-              value: "#4d7c0f",
+              value: "#65a30d",
             },
           },
           button: {
-            color: { value: "{colors.blue.60}" },
+            color: { value: "#65a30d" },
             _hover: {
               backgroundColor: {
-                value: "{colors.blue.10}",
+                value: "#d9f99d",
               },
               color: { value: "{colors.blue.60}" },
             },
@@ -26,7 +26,7 @@ const theme = {
           },
           button: {
             color: { value: "#4d7c0f" },
-            // backgroundColor: { value: "#4d7c0f"},
+            backgroundColor: { value: "#4d7c0f"},
             _focus: {
               backgroundColor: {
                 value: "#4d7c0f",
@@ -46,13 +46,13 @@ const theme = {
           },
         },
       },
-      menuItem: {
-        button: {
-          _hover: {
-            backgroundColor: '#a3e635',
-          },
-        },
-      },
+      // menuItem: {
+      //   button: {
+      //     _hover: {
+      //       backgroundColor: '#a3e635',
+      //     },
+      //   },
+      // },
       //   card: {
       //     backgroundColor: { value: '{colors.background.secondary}' },
       //     outlined: {
