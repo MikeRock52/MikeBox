@@ -3,14 +3,13 @@ import { Storage } from "aws-amplify";
 import {
   Collection,
   Card,
-  Image,
-  Text,
-  Flex,
   useTheme,
   ThemeProvider,
 } from "@aws-amplify/ui-react";
 import theme from "./collectionTheme";
 import getThumbnail from "../../utilities";
+import { FiMoreVertical } from 'react-icons/fi';
+
 
 function FileList({ upload }) {
   const [fileInfo, setFileInfo] = useState([]);
@@ -21,7 +20,6 @@ function FileList({ upload }) {
     setFileInfo(results);
     const allFiles = await Promise.all(
       results.map(async (file) => {
-        // console.log(file.contentType)
         return await Storage.get(file.key, { level: "private" });
       })
     );
@@ -60,19 +58,21 @@ function FileList({ upload }) {
                 lineHeight="small"
                 backgroundColor="transparent"
                 variation="elevated"
-                width="200px"
+                width="300px"
                 height="200px"
                 className="group hover:opacity-75"
               >
                 <img
                   src={getThumbnail(fileInfo[index]) || file}
                   alt={fileInfo[index].key}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-contain"
                 />
                 <div className="absolute top-0 left-0 opacity-75 h-full w-full bg-lime-200 invisible group-hover:visible" />
-                <h4 className="absolute top-0 left-0 ml-3 mt-4 font-bold text-black invisible group-hover:visible">
-                  {fileInfo[index].key}
-                </h4>
+                <div className="absolute top-0 left-0 ml-3 mt-4 w-3/5 text-left text-black invisible group-hover:visible">
+                  <h4 className="font-bold">{fileInfo[index].key}</h4>
+                  <p className="mt-1">{fileInfo[index].size/1000}kb</p>
+                </div>
+                <FiMoreVertical />
               </Card>
             </div>
           )}

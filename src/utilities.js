@@ -1,10 +1,18 @@
 function getThumnail(file) {
-  const fileExt = file?.key?.split(".").pop().toLowerCase();
+  const fileExt = getFileExtension(file?.key);
   if (imageExtensions.includes(fileExt)) {
     return null;
   } else {
     return icons.file;
   }
+}
+
+function getFileExtension(filename) {
+  return filename.split(".").pop().toLowerCase();
+}
+
+function calculateSize(sizeInBytes) {
+  
 }
 
 const icons = {
@@ -29,3 +37,4 @@ const imageExtensions = [
 
 
 export default getThumnail;
+export { getFileExtension };
