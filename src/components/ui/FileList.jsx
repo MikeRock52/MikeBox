@@ -6,7 +6,7 @@ import FileCollection from "./FileCollection";
 import { isFolder } from "../../utilities";
 import FolderFiles from "./FolderFiles";
 
-function FileList({ upload, folder, setFolder }) {
+function FileList({ upload, setFolder, createFolder }) {
   const [fileInfo, setFileInfo] = useState([]);
   const [allFiles, setAllFiles] = useState([]);
   const [folders, setFolders] = useState([]);
@@ -29,11 +29,11 @@ function FileList({ upload, folder, setFolder }) {
 
   useEffect(() => {
     fetchAllFiles();
-  }, [upload]);
+  }, [upload, createFolder]);
 
   return (
-    <div>
-      <Tabs justifyContent="flex-start">
+    <div className="mt-16 mx-5">
+      <Tabs justifyContent="flex-start" borderColor="#a3e635">
         <TabItem title="All Files" onClick={() => setFolder("")}>
           <FileCollection files={allFiles} fileInfo={fileInfo} />
         </TabItem>
