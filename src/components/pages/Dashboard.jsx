@@ -9,6 +9,7 @@ function Dashboard() {
   const [upload, setUpload] = useState(false);
   const [createFolder, setCreateFolder] = useState(false);
   const [folder, setFolder] = useState("");
+  const [showFiles, setShowFiles] = useState(true);
 
   return (
     <div className="">
@@ -18,13 +19,15 @@ function Dashboard() {
           upload={upload}
           createFolder={createFolder}
           setCreateFolder={setCreateFolder}
+          showFiles={showFiles}
+          setShowFiles={setShowFiles}
         />
       </div>
       {createFolder && <FolderCreator setCreateFolder={setCreateFolder} />}
       {upload && <FileUploader setUpload={setUpload} folder={folder} />}
-      <div className="mt-8">
+      {showFiles && <div className="mt-8">
         <FileList upload={upload} folder={folder} setFolder={setFolder} createFolder={createFolder} />
-      </div>
+      </div>}
     </div>
   );
 }

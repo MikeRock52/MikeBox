@@ -1,13 +1,20 @@
 import React from "react";
 import { UploadIcon, CreateFolder, ToFolder, ViewFiles } from "../Icons";
 
-function FileActions({ upload, setUpload, createFolder, setCreateFolder }) {
+function FileActions({
+  upload,
+  setUpload,
+  createFolder,
+  setCreateFolder,
+  showFiles,
+  setShowFiles,
+}) {
   return (
     <div className="flex justify-center flex-wrap mt-8">
       <button
         onClick={() => {
           setCreateFolder(false);
-          setUpload(!upload)
+          setUpload(!upload);
         }}
         className="fileAction"
       >
@@ -24,17 +31,13 @@ function FileActions({ upload, setUpload, createFolder, setCreateFolder }) {
         {CreateFolder()}
         <h4 className="w-fit h-fit mx-auto font-bold">Create Folder</h4>
       </button>
-      <button
-        className="fileAction"
-      >
+      <button className="fileAction">
         {ToFolder()}
         <h4 className="w-fit h-fit mx-auto font-bold">Upload to Folder</h4>
       </button>
-      <button
-        className="fileAction"
-      >
+      <button onClick={() => setShowFiles(!showFiles)} className="fileAction">
         {ViewFiles()}
-        <h4 className="w-fit h-fit mx-auto font-bold">View Files</h4>
+        <h4 className="w-fit h-fit mx-auto font-bold">{showFiles ? "Hide Files" : "Show Files"}</h4>
       </button>
     </div>
   );

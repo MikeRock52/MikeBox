@@ -9,7 +9,7 @@ function FileCollection({ files, fileInfo }) {
   const [search, setSearch] = useState(false);
 
   return (
-    <div className="mb-12 mt-16">
+    <div className="mb-12 mt-8">
       <button
         onClick={() => setSearch(!search)}
         title="Toggle Search"
