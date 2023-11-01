@@ -9,6 +9,10 @@ function getThumnail(file) {
   }
 }
 
+function isFolder(filename) {
+  return filename.endsWith("/");
+}
+
 function getFileExtension(filename) {
   return filename.split(".").pop().toLowerCase();
 }
@@ -44,4 +48,4 @@ const imageExtensions = [
 
 
 export default getThumnail;
-export { getFileExtension, calculateFileSize };
+export { getFileExtension, calculateFileSize, isFolder };

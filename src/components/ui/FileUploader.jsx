@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { StorageManager } from "@aws-amplify/ui-react-storage";
 import toast from "react-hot-toast";
 
-function FileUploader({ setUpload }) {
+function FileUploader({ setUpload, folder }) {
+  const [fileName, setFileName] = useState("");
   return (
     <div className="mt-8 sm:w-4/5 md:w-4/6 lg:w-3/6 mx-auto">
       <StorageManager
@@ -10,16 +11,14 @@ function FileUploader({ setUpload }) {
         autoUpload={false}
         maxFileCount={5}
         maxFileSize={10485760}
-        // path='/'
         isResumable
-        // processFile={({ file, key }) => {
-        //   console.log(file);
-        //   return {
-        //     file,
-        //     key,
-        //     metadata: {contentType: file.type}
-        //   };
-        // }}
+        processFile={({ file, key }) => {
+          key = folder + key;
+          return {
+            file,
+            key,
+          };
+        }}
         onUploadSuccess={() => {
           toast.success("File(s) uploaded successfully!");
           setUpload(false);

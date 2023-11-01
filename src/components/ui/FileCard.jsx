@@ -3,6 +3,7 @@ import { Card, Menu, MenuItem } from "@aws-amplify/ui-react";
 import getThumbnail, {
   calculateFileSize,
   getFileExtension,
+  isFolder,
 } from "../../utilities";
 import { FiMoreHorizontal } from "react-icons/fi";
 
@@ -28,7 +29,7 @@ function FileCard({ index, file, fileInfo }) {
           <h4 className="font-bold mr-2">{fileInfo[index].key}</h4>
           <p className="mt-1">
             {getFileExtension(
-              fileInfo[index].key.endsWith("/") ? "FOLDER" : fileInfo[index].key
+              isFolder(fileInfo[index].key) ? "FOLDER" : fileInfo[index].key
             ).toUpperCase()}{" "}
             ~ {calculateFileSize(fileInfo[index].size)}
           </p>

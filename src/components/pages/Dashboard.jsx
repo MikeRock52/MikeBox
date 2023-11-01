@@ -8,7 +8,7 @@ import FolderCreator from "../ui/FolderCreator";
 function Dashboard() {
   const [upload, setUpload] = useState(false);
   const [createFolder, setCreateFolder] = useState(false);
-  const [folder, setFolder] = useState("mikebox/");
+  const [folder, setFolder] = useState("");
 
   return (
     <div className="">
@@ -21,9 +21,9 @@ function Dashboard() {
         />
       </div>
       {createFolder && <FolderCreator setCreateFolder={setCreateFolder} />}
-      {upload && <FileUploader setUpload={setUpload} />}
+      {upload && <FileUploader setUpload={setUpload} folder={folder} />}
       <div className="mt-8">
-        <FileList upload={upload} folder={folder} />
+        <FileList upload={upload} folder={folder} setFolder={setFolder} />
       </div>
     </div>
   );
