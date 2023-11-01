@@ -20,7 +20,7 @@ function Dashboard() {
           setCreateFolder={setCreateFolder}
         />
       </div>
-      {createFolder && <FolderCreator folder={folder} setFolder={setFolder} />}
+      {createFolder && <FolderCreator setCreateFolder={setCreateFolder} />}
       {upload && <FileUploader setUpload={setUpload} />}
       <div className="mt-8">
         <FileList upload={upload} />

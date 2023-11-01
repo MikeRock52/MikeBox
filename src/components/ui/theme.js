@@ -23,6 +23,7 @@ const theme = {
         search: {
           input: {
             color: { value: "{colors.blue.60}" },
+            borderColor: {value: "#65a30d"}
           },
           button: {
             color: { value: "#4d7c0f" },

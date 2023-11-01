@@ -25,7 +25,7 @@ function FileList({ upload }) {
 
   useEffect(() => {
     fetchAllFiles();
-  }, [upload]);
+  }, []);
 
   console.log(fileInfo);
 
