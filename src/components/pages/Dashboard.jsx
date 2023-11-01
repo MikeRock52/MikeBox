@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import FileActions from "../ui/FileActions";
 import "@aws-amplify/ui-react/styles.css";
 import FileUploader from "../ui/FileUploader";
@@ -10,6 +10,9 @@ function Dashboard() {
   const [createFolder, setCreateFolder] = useState(false);
   const [folder, setFolder] = useState("");
   const [showFiles, setShowFiles] = useState(true);
+  const foldersRef = useRef([]);
+
+  console.log(foldersRef);
 
   return (
     <div className="">
@@ -25,9 +28,17 @@ function Dashboard() {
       </div>
       {createFolder && <FolderCreator setCreateFolder={setCreateFolder} />}
       {upload && <FileUploader setUpload={setUpload} folder={folder} />}
-      {showFiles && <div className="mt-8">
-        <FileList upload={upload} folder={folder} setFolder={setFolder} createFolder={createFolder} />
-      </div>}
+      {showFiles && (
+        <div className="mt-8">
+          <FileList
+            upload={upload}
+            folder={folder}
+            setFolder={setFolder}
+            createFolder={createFolder}
+            foldersRef={foldersRef}
+          />
+        </div>
+      )}
     </div>
   );
 }

@@ -19,6 +19,7 @@ function FileCard({ index, file, fileInfo }) {
         width="280px"
         height="200px"
         className="group hover:opacity-75"
+        
       >
         <img
           src={getThumbnail(fileInfo[index]) || file}

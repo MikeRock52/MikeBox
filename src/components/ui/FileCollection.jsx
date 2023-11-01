@@ -4,8 +4,9 @@ import theme from "./theme";
 import "./files.css";
 import FileCard from "./FileCard";
 import { SearchFile } from "../Icons";
+import { isFolder } from "../../utilities";
 
-function FileCollection({ files, fileInfo }) {
+function FileCollection({ files, fileInfo, foldersRef }) {
   const [search, setSearch] = useState(false);
 
   return (
@@ -32,14 +33,27 @@ function FileCollection({ files, fileInfo }) {
           isSearchable={search}
           searchPlaceholder="Type to search file..."
         >
-          {(file, index) => (
-            <FileCard
-              key={index}
-              file={file}
-              index={index}
-              fileInfo={fileInfo}
-            />
-          )}
+          {(file, index) => {
+            return !isFolder(fileInfo[index].key) ? (
+              <FileCard
+                key={index}
+                file={file}
+                index={index}
+                fileInfo={fileInfo}
+              />
+            ) : (
+              <button
+                key={index}
+                onClick={() => {
+                  // console.log(index);
+                  // console.log(foldersRef.current[fileInfo[index].key]);
+                  // foldersRef.current[fileInfo[index].key].focus();
+                }}
+              >
+                <FileCard file={file} index={index} fileInfo={fileInfo} />
+              </button>
+            );
+          }}
         </Collection>
       </ThemeProvider>
     </div>
