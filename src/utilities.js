@@ -17,6 +17,15 @@ function getFileExtension(filename) {
   return filename.split(".").pop().toLowerCase();
 }
 
+function getFileName(fileKey) {
+  if (isFolder(fileKey)) {
+    return fileKey;
+  } else {
+    const parts = fileKey.split('/');
+    return parts[parts.length - 1];
+  }
+}
+
 function calculateFileSize(sizeInBytes) {
   const kb = (sizeInBytes / 1024).toFixed(2);
   if (kb < 1024) {
@@ -48,4 +57,4 @@ const imageExtensions = [
 
 
 export default getThumnail;
-export { getFileExtension, calculateFileSize, isFolder };
+export { getFileExtension, calculateFileSize, isFolder, getFileName };
