@@ -9,9 +9,10 @@ function FolderCreator({ setCreateFolder }) {
 
   async function createFolder() {
     try {
-      await Storage.put(folder, "", { level: "private" });
-      toast.success(`Successfully created folder: ${folder}`);
+      await Storage.put(folder + '/', "", { level: "private" });
+      toast.success(`Successfully created folder: ${folder}/`);
       setCreateFolder(false);
+      setFolder("");
     } catch (error) {
       toast.error("Error creating folder:", error);
       setCreateFolder(false);
@@ -29,7 +30,8 @@ function FolderCreator({ setCreateFolder }) {
           boxShadow="medium"
           borderWidth="medium"
           borderColor="#65a30d"
-          onChange={(e) => setFolder(e.currentTarget.value + "/")}
+          value={folder}
+          onChange={(e) => setFolder(e.currentTarget.value)}
         />
         <button
           onClick={createFolder}

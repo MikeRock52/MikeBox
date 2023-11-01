@@ -1,6 +1,8 @@
 function getThumnail(file) {
   const fileExt = getFileExtension(file?.key);
-  if (imageExtensions.includes(fileExt)) {
+  if (fileExt.endsWith("/")) {
+    return icons.folder;
+  } else if (imageExtensions.includes(fileExt)) {
     return null;
   } else {
     return icons.file;

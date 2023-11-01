@@ -23,7 +23,7 @@ function Dashboard() {
       {createFolder && <FolderCreator setCreateFolder={setCreateFolder} />}
       {upload && <FileUploader setUpload={setUpload} />}
       <div className="mt-8">
-        <FileList upload={upload} />
+        <FileList upload={upload} folder={folder} />
       </div>
     </div>
   );

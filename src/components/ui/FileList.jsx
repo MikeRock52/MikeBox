@@ -8,7 +8,7 @@ import theme from "./theme";
 import "./files.css";
 import FileCard from "./FileCard";
 
-function FileList({ upload }) {
+function FileList({ upload, folder }) {
   const [fileInfo, setFileInfo] = useState([]);
   const [files, setFiles] = useState([]);
 
@@ -25,12 +25,12 @@ function FileList({ upload }) {
 
   useEffect(() => {
     fetchAllFiles();
-  }, []);
+  }, [upload, folder]);
 
   console.log(fileInfo);
 
   return (
-    <div className="mb-12">
+    <div className="mb-12 mt-20">
       <ThemeProvider theme={theme} colorMode="dark">
         <Collection
           type="list"
@@ -42,7 +42,7 @@ function FileList({ upload }) {
           direction="row"
           wrap="wrap"
           isPaginated
-          itemsPerPage={6}
+          itemsPerPage={10}
           isSearchable
           searchPlaceholder="Type to search file..."
         >
