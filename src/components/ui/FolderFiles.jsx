@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import FileCollection from "./FileCollection";
 import { Storage } from "aws-amplify";
 
-function FolderFiles({ folderInfo, setFolder, upload }) {
+function FolderFiles({ folderInfo, setFolder, folders, upload, setTabIndex }) {
   const [fileInfo, setFileInfo] = useState([]);
   const [folderFiles, setFolderFiles] = useState([]);
 
@@ -27,7 +27,7 @@ function FolderFiles({ folderInfo, setFolder, upload }) {
   return (
     <div>
       {folderFiles.length > 0 ? (
-        <FileCollection files={folderFiles} fileInfo={fileInfo} />
+        <FileCollection files={folderFiles} folders={folders} fileInfo={fileInfo} setTabIndex={setTabIndex} />
       ) : (
         <h2>Empty folder</h2>
       )}

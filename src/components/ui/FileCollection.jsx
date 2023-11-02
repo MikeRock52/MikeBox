@@ -6,7 +6,7 @@ import FileCard from "./FileCard";
 import { SearchFile } from "../Icons";
 import { isFolder } from "../../utilities";
 
-function FileCollection({ files, fileInfo, foldersRef }) {
+function FileCollection({ files, fileInfo, folders, setTabIndex }) {
   const [search, setSearch] = useState(false);
 
   return (
@@ -42,16 +42,16 @@ function FileCollection({ files, fileInfo, foldersRef }) {
                 fileInfo={fileInfo}
               />
             ) : (
-              <button
+              <div
+                className="cursor-pointer"
                 key={index}
                 onClick={() => {
-                  // console.log(index);
-                  // console.log(foldersRef.current[fileInfo[index].key]);
-                  // foldersRef.current[fileInfo[index].key].focus();
+                  setTabIndex(folders.findIndex((f) => f.key === fileInfo[index].key) + 1);
                 }}
               >
                 <FileCard file={file} index={index} fileInfo={fileInfo} />
-              </button>
+              </div
+              >
             );
           }}
         </Collection>

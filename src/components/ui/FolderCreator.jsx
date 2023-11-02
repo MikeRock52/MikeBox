@@ -4,12 +4,12 @@ import { CreateFolder } from "../Icons";
 import { Storage } from "aws-amplify";
 import toast from "react-hot-toast";
 
-function FolderCreator({ setCreateFolder }) {
+function FolderCreator({ setCreateFolder, currentFolder }) {
   const [folder, setFolder] = useState("");
 
   async function createFolder() {
     try {
-      await Storage.put(folder + '/', "", { level: "private" });
+      await Storage.put(`${currentFolder}${folder}/`, "", { level: "private" });
       toast.success(`Successfully created folder: ${folder}/`);
       setCreateFolder(false);
       setFolder("");

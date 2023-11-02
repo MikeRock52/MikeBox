@@ -1,17 +1,16 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import FileActions from "../ui/FileActions";
 import "@aws-amplify/ui-react/styles.css";
 import FileUploader from "../ui/FileUploader";
 import FileList from "../ui/FileList";
 import FolderCreator from "../ui/FolderCreator";
 
+
 function Dashboard() {
   const [upload, setUpload] = useState(false);
   const [createFolder, setCreateFolder] = useState(false);
   const [folder, setFolder] = useState("");
   const [showFiles, setShowFiles] = useState(true);
-  const [ tabIndex, setTabIndex ] = useState(0);
-
 
   return (
     <div className="">
@@ -25,7 +24,7 @@ function Dashboard() {
           setShowFiles={setShowFiles}
         />
       </div>
-      {createFolder && <FolderCreator setCreateFolder={setCreateFolder} />}
+      {createFolder && <FolderCreator setCreateFolder={setCreateFolder} currentFolder={folder} />}
       {upload && <FileUploader setUpload={setUpload} folder={folder} />}
       {showFiles && (
         <div className="mt-8">
@@ -34,8 +33,6 @@ function Dashboard() {
             folder={folder}
             setFolder={setFolder}
             createFolder={createFolder}
-            tabIndex={tabIndex}
-            setTabIndex={setTabIndex}
           />
         </div>
       )}
