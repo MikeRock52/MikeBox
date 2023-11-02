@@ -10,9 +10,8 @@ function Dashboard() {
   const [createFolder, setCreateFolder] = useState(false);
   const [folder, setFolder] = useState("");
   const [showFiles, setShowFiles] = useState(true);
-  const foldersRef = useRef([]);
+  const [ tabIndex, setTabIndex ] = useState(0);
 
-  console.log(foldersRef);
 
   return (
     <div className="">
@@ -35,7 +34,8 @@ function Dashboard() {
             folder={folder}
             setFolder={setFolder}
             createFolder={createFolder}
-            foldersRef={foldersRef}
+            tabIndex={tabIndex}
+            setTabIndex={setTabIndex}
           />
         </div>
       )}
