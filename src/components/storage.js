@@ -1,13 +1,26 @@
 import { Storage } from "aws-amplify";
+import toast from "react-hot-toast";
 
-async function fetchAllFiles() {
-    const { results } = await Storage.list("", { level: "private" });
-    setFileInfo(results);
-    const allFiles = await Promise.all(
-      results.map(async (file) => {
-        // console.log(file.contentType)
-        return await Storage.get(file.key, { level: "private" });
-      })
-    );
-    setFiles(allFiles);
+async function deleteFile(fileKey) {
+  try {
+    await Storage.remove(fileKey, { level: "private" });
+    toast.success(`${fileKey} deleted successfully`);
+  } catch (error) {
+    console.log(error);
+    toast.error(error);
   }
+}
+
+async function renameFile(oldKey, newKey) {
+  try {
+    await Storage.copy(oldKey, newKey, { level: 'private' });
+    await Storage.remove(oldKey, { level: 'private' });
+
+    toast.success('File renamed successfully.');
+  } catch (error) {
+    toast.error('Error renaming the file:', error);
+  }
+}
+
+
+export {deleteFile, renameFile}

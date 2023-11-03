@@ -7,6 +7,7 @@ import getThumbnail, {
   isFolder,
 } from "../../utilities";
 import { FiMoreHorizontal } from "react-icons/fi";
+import { deleteFile } from "../storage";
 
 function FileCard({ index, file, fileInfo }) {
   return (
@@ -19,7 +20,6 @@ function FileCard({ index, file, fileInfo }) {
         width="280px"
         height="200px"
         className="group hover:opacity-75"
-        
       >
         <img
           src={getThumbnail(fileInfo[index]) || file}
@@ -48,7 +48,11 @@ function FileCard({ index, file, fileInfo }) {
           >
             <MenuItem>Rename</MenuItem>
             <MenuItem>Share</MenuItem>
-            <MenuItem>Delete</MenuItem>
+            <MenuItem
+              onClick={() => {deleteFile(fileInfo[index].key)}}
+            >
+              Delete
+            </MenuItem>
           </Menu>
         </div>
       </Card>

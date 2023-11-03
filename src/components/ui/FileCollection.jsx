@@ -35,23 +35,26 @@ function FileCollection({ files, fileInfo, folders, setTabIndex }) {
         >
           {(file, index) => {
             return !isFolder(fileInfo[index].key) ? (
-              <FileCard
-                key={index}
-                file={file}
-                index={index}
-                fileInfo={fileInfo}
-              />
+              <a href={file} target="_blank" rel="noreferrer noopener">
+                <FileCard
+                  key={index}
+                  file={file}
+                  index={index}
+                  fileInfo={fileInfo}
+                />
+              </a>
             ) : (
               <div
                 className="cursor-pointer"
                 key={index}
                 onClick={() => {
-                  setTabIndex(folders.findIndex((f) => f.key === fileInfo[index].key) + 1);
+                  setTabIndex(
+                    folders.findIndex((f) => f.key === fileInfo[index].key) + 1
+                  );
                 }}
               >
                 <FileCard file={file} index={index} fileInfo={fileInfo} />
-              </div
-              >
+              </div>
             );
           }}
         </Collection>
