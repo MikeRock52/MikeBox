@@ -4,6 +4,8 @@ import { Copy } from '../Icons';
 function FileShare({ text }) {
   const [isCopied, setIsCopied] = useState(false);
 
+  console.log(text)
+
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(text);
@@ -16,7 +18,7 @@ function FileShare({ text }) {
 
   return (
     <div className='relative text-start bg-lime-100 py-2 w-full rounded mt-2'>
-      <span className="mx-2">{text}</span>
+      <span className="mx-2">{text.slice(0, 100)}...</span>
       <button className="absolute top-0 right-0 bg-lime-200 p-2" onClick={copyToClipboard}>
         {isCopied ? 'Copied!' : Copy()}
       </button>

@@ -7,8 +7,9 @@ import { SearchFile } from "../Icons";
 import { isFolder } from "../../utilities";
 import FileShare from "./FileShare";
 
-function FileCollection({ files, fileInfo, folders, setTabIndex }) {
+function FileCollection({ files, setFiles, fileInfo, folders, setTabIndex }) {
   const [search, setSearch] = useState(false);
+  const [shareLink, setShareLink] = useState("");
 
   return (
     <div className="mb-12 mt-8">
@@ -19,19 +20,24 @@ function FileCollection({ files, fileInfo, folders, setTabIndex }) {
       >
         {SearchFile()}
       </button>
-      <div className="flex justify-center mb-2">
-        <Alert
-          isDismissible
-          variation="info"
-          backgroundColor="#d9f99d"
-          hasIcon={true}
-          heading="Shared Link Created"
-        >
-          <h3 className="my-1">You can share your file using the link below</h3>
-          <h5>Link is only valid for 60 minutes</h5>
-          <FileShare text="We are still testing...We are still testing...We are still testing...We are still testing...We are still testing..." />
-        </Alert>
-      </div>
+      {shareLink && (
+        <div className="flex justify-center mb-2">
+          <Alert
+            isDismissible
+            variation="info"
+            backgroundColor="#d9f99d"
+            hasIcon={true}
+            heading="Shared Link Created"
+            onDismiss={() => {setShareLink("")}}
+          >
+            <h3 className="my-1">
+              You can share your file using the link below
+            </h3>
+            <h5>Link is only valid for 60 minutes</h5>
+            <FileShare text={shareLink} />
+          </Alert>
+        </div>
+      )}
       <ThemeProvider theme={theme} colorMode="dark">
         <Collection
           type="list"
@@ -49,14 +55,16 @@ function FileCollection({ files, fileInfo, folders, setTabIndex }) {
         >
           {(file, index) => {
             return !isFolder(fileInfo[index].key) ? (
-              <a href={file} target="_blank" rel="noreferrer noopener">
+              
                 <FileCard
                   key={index}
                   file={file}
                   index={index}
                   fileInfo={fileInfo}
+                  shareLink={shareLink}
+                  setShareLink={setShareLink}
+                  setFiles={setFiles}
                 />
-              </a>
             ) : (
               <div
                 className="cursor-pointer"
@@ -67,7 +75,13 @@ function FileCollection({ files, fileInfo, folders, setTabIndex }) {
                   );
                 }}
               >
-                <FileCard file={file} index={index} fileInfo={fileInfo} />
+                <FileCard
+                  file={file}
+                  index={index}
+                  fileInfo={fileInfo}
+                  shareLink={shareLink}
+                  setShareLink={setShareLink}
+                />
               </div>
             );
           }}

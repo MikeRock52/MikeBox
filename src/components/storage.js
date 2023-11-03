@@ -18,9 +18,20 @@ async function renameFile(oldKey, newKey) {
 
     toast.success('File renamed successfully.');
   } catch (error) {
-    toast.error('Error renaming the file:', error);
+    toast.error('Error renaming the file');
+    console.error(error);
   }
 }
 
+async function shareFile(fileKey) {
+  try {
+    const signedUrl = await Storage.get(fileKey, { level: "private", expires: 3600 });
+    return signedUrl; 
+  } catch(error) {
+    toast.error("Error sharing file");
+    console.error(error);
+    return "";
+  }
+}
 
-export {deleteFile, renameFile}
+export {deleteFile, renameFile, shareFile}

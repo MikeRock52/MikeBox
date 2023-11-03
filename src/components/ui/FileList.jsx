@@ -52,7 +52,7 @@ function FileList({ upload, setFolder, createFolder }) {
         borderColor="#a3e635"
       >
         <TabItem title="All Files" onClick={() => setFolder("")}>
-          <FileCollection files={files} fileInfo={fileInfo} folders={folders} />
+          <FileCollection files={files} setFiles={setFiles} fileInfo={fileInfo} folders={folders} />
         </TabItem>
         {folders.map((folder, index) => {
           return (

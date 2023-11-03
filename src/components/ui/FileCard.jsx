@@ -7,9 +7,9 @@ import getThumbnail, {
   isFolder,
 } from "../../utilities";
 import { FiMoreHorizontal } from "react-icons/fi";
-import { deleteFile } from "../storage";
+import { deleteFile, shareFile } from "../storage";
 
-function FileCard({ index, file, fileInfo }) {
+function FileCard({ index, file, fileInfo, shareLink, setShareLink }) {
   return (
     <div className="relative">
       <Card
@@ -21,6 +21,7 @@ function FileCard({ index, file, fileInfo }) {
         height="200px"
         className="group hover:opacity-75"
       >
+        <a href={file} target="_blank" rel="noreferrer noopener">
         <img
           src={getThumbnail(fileInfo[index]) || file}
           alt={fileInfo[index].key}
@@ -37,6 +38,7 @@ function FileCard({ index, file, fileInfo }) {
               ` ~ ${calculateFileSize(fileInfo[index].size)}`}
           </p>
         </div>
+        </a>
         <div className="absolute top-0 left-0 ml-3 mt-4 text-black">
           <Menu
             trigger={
@@ -47,9 +49,12 @@ function FileCard({ index, file, fileInfo }) {
             backgroundColor="#fff"
           >
             <MenuItem>Rename</MenuItem>
-            <MenuItem>Share</MenuItem>
+            <MenuItem onClick={async () => {setShareLink( await shareFile(fileInfo[index].key))}}>Share</MenuItem>
             <MenuItem
-              onClick={() => {deleteFile(fileInfo[index].key)}}
+              onClick={() => {
+                deleteFile(fileInfo[index].key);
+                // setFiles(files.filter((file) => file )
+              }}
             >
               Delete
             </MenuItem>
