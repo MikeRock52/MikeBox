@@ -7,7 +7,7 @@ import { SearchFile } from "../Icons";
 import { isFolder } from "../../utilities";
 import FileShare from "./FileShare";
 
-function FileCollection({ files, setFiles, fileInfo, folders, setTabIndex }) {
+function FileCollection({ files, setFiles, fileInfo, setFileInfo, folders, setTabIndex }) {
   const [search, setSearch] = useState(false);
   const [shareLink, setShareLink] = useState("");
 
@@ -61,9 +61,11 @@ function FileCollection({ files, setFiles, fileInfo, folders, setTabIndex }) {
                   file={file}
                   index={index}
                   fileInfo={fileInfo}
+                  setFileInfo={setFileInfo}
                   shareLink={shareLink}
                   setShareLink={setShareLink}
                   setFiles={setFiles}
+                  files={files}
                 />
             ) : (
               <div

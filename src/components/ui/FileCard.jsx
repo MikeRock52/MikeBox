@@ -9,7 +9,7 @@ import getThumbnail, {
 import { FiMoreHorizontal } from "react-icons/fi";
 import { deleteFile, shareFile } from "../storage";
 
-function FileCard({ index, file, fileInfo, shareLink, setShareLink }) {
+function FileCard({ index, file, fileInfo, setFileInfo, files, setFiles, shareLink, setShareLink }) {
   return (
     <div className="relative">
       <Card
@@ -53,7 +53,8 @@ function FileCard({ index, file, fileInfo, shareLink, setShareLink }) {
             <MenuItem
               onClick={() => {
                 deleteFile(fileInfo[index].key);
-                // setFiles(files.filter((file) => file )
+                setFiles(files.filter((f) => f !== file));
+                setFileInfo(fileInfo.filter((f) => f.key !== fileInfo[index].key));
               }}
             >
               Delete

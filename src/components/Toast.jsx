@@ -5,7 +5,7 @@ function Toast() {
   return (
     <Toaster
       containerStyle={{
-        top: 80,
+        top: 50,
       }}
       toastOptions={{
         duration: 5000,
