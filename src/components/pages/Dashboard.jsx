@@ -5,12 +5,12 @@ import FileUploader from "../ui/FileUploader";
 import FileList from "../ui/FileList";
 import FolderCreator from "../ui/FolderCreator";
 import { FileContexts } from "../../contexts/FileContexts";
-import TestComponent from "../TestComponent";
 
 function Dashboard() {
   const [upload, setUpload] = useState(false);
   const [createFolder, setCreateFolder] = useState(false);
   const [folder, setFolder] = useState("/");
+  const [folderFiles, setFolderFiles] = useState([]);
   const [showFiles, setShowFiles] = useState(true);
   const [fileInfos, setFileInfos] = useState([]);
   const [files, setFiles] = useState([]);
@@ -28,6 +28,7 @@ function Dashboard() {
           fileInfos, setFileInfos, files, setFiles,
           folders, setFolders, tabIndex, setTabIndex,
           search, setSearch, shareLink, setShareLink,
+          folderFiles, setFolderFiles,
         }}
       >
         <div className="mx-5 md:mx-12">

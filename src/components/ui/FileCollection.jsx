@@ -12,8 +12,8 @@ function FileCollection() {
   const {
     files,
     setFiles,
-    fileInfo,
-    setFileInfo,
+    fileInfos,
+    setFileInfos,
     folders,
     setFolders,
     setTabIndex,
@@ -68,7 +68,8 @@ function FileCollection() {
           searchPlaceholder="Type to search file..."
         >
           {(file, index) => {
-            return !isFolder(fileInfo[index].key) ? (
+            console.log(file)
+            return !isFolder(fileInfos[index].key) ? (
               <FileCard key={index} file={file} index={index} />
             ) : (
               <div
@@ -76,7 +77,7 @@ function FileCollection() {
                 key={index}
                 onClick={() => {
                   setTabIndex(
-                    folders.findIndex((f) => f.key === fileInfo[index].key) + 1
+                    folders.findIndex((f) => f.key === fileInfos[index].key) + 1
                   );
                 }}
               >

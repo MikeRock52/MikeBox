@@ -6,14 +6,16 @@ import FileCollection from "./FileCollection";
 import { isFolder } from "../../utilities";
 import FolderFiles from "./FolderFiles";
 import { FileContexts } from "../../contexts/FileContexts";
+import { fetchAllFiles } from "../storage";
 
 function FileList() {
   const {
     upload,
+    folder,
     setFolder,
     createFolder,
-    fileInfo,
-    setFileInfo,
+    fileInfos,
+    setFileInfos,
     files,
     setFiles,
     folders,
@@ -22,38 +24,17 @@ function FileList() {
     setTabIndex,
   } = useContext(FileContexts);
 
+
+  async function fetchFiles() {
+    const fileData = await fetchAllFiles(folder);
+    setFiles(fileData.files);
+    setFileInfos(fileData.fileInfos);
+    setFolders(fileData.folders);
+  }
+
   useEffect(() => {
-    async function fetchAllFiles() {
-      try {
-        const { results } = await Storage.list("", { level: "private" });
-
-        console.log(results);
-
-        setFolders(
-          results.filter((file) => {
-            return isFolder(file.key) === true;
-          })
-        );
-
-        const justFiles = results.filter((file) => {
-          return !isFolder(file.key);
-        });
-
-        setFileInfo(justFiles);
-
-        const files = await Promise.all(
-          justFiles.map(async (file) => {
-            return await Storage.get(file.key, { level: "private" });
-          })
-        );
-        setFiles(files);
-        console.log(files);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchAllFiles();
-  }, [upload, createFolder]);
+    fetchFiles();
+  }, [upload, createFolder, folder]);
 
   return (
     <div className="mt-16 mx-5">
@@ -63,20 +44,21 @@ function FileList() {
         justifyContent="flex-start"
         borderColor="#a3e635"
       >
-        <TabItem title="All Files" onClick={() => setFolder("")}>
+        <TabItem title="All Files" onClick={() => setFolder("/")}>
           <FileCollection />
         </TabItem>
         {folders.map((folder, index) => {
           return (
             <TabItem title={folder.key} key={index}>
+              {/* <FileCollection /> */}
               <FolderFiles
                 key={index}
                 folderInfo={folder}
-                setFolder={setFolder}
-                upload={upload}
-                folders={folders}
-                setFolders={setFolders}
-                setTabIndex={setTabIndex}
+                // setFolder={setFolder}
+                // upload={upload}
+                // folders={folders}
+                // setFolders={setFolders}
+                // setTabIndex={setTabIndex}
               />
             </TabItem>
           );

@@ -12,8 +12,8 @@ import { FileContexts } from "../../contexts/FileContexts";
 
 function FileCard({index, file,}) {
   const {
-    fileInfo,
-    setFileInfo,
+    fileInfos,
+    setFileInfos,
     files,
     setFiles,
     folders,
@@ -35,21 +35,21 @@ function FileCard({index, file,}) {
       >
         <a href={file} target="_blank" rel="noreferrer noopener">
           <img
-            src={getThumbnail(fileInfo[index]) || file}
-            alt={fileInfo[index].key}
+            src={getThumbnail(fileInfos[index]) || file}
+            alt={fileInfos[index].key}
             className="h-full w-full object-contain"
           />
           <div className="absolute top-0 left-0 opacity-75 h-full w-full bg-lime-200 invisible group-hover:visible" />
           <div className="absolute bottom-0 left-0 ml-3 mb-4 w-fit text-left text-black invisible group-hover:visible">
             <h4 className="font-bold mr-2">
-              {getFileName(fileInfo[index].key)}
+              {getFileName(fileInfos[index].key)}
             </h4>
             <p className="mt-1">
               {getFileExtension(
-                isFolder(fileInfo[index].key) ? "FOLDER" : fileInfo[index].key
+                isFolder(fileInfos[index].key) ? "FOLDER" : fileInfos[index].key
               ).toUpperCase()}
-              {!isFolder(fileInfo[index].key) &&
-                ` ~ ${calculateFileSize(fileInfo[index].size)}`}
+              {!isFolder(fileInfos[index].key) &&
+                ` ~ ${calculateFileSize(fileInfos[index].size)}`}
             </p>
           </div>
         </a>
@@ -65,7 +65,7 @@ function FileCard({index, file,}) {
             <MenuItem>Rename</MenuItem>
             <MenuItem
               onClick={async () => {
-                setShareLink(await shareFile(fileInfo[index].key));
+                setShareLink(await shareFile(fileInfos[index].key));
               }}
             >
               Share
@@ -73,10 +73,10 @@ function FileCard({index, file,}) {
             <MenuItem
               onClick={() => {
                 console.log(files);
-                // deleteFile(fileInfo[index].key);
-                // isFolder(fileInfo[index].key) && setFolders(folders.filter((f) => f.key !== file.key))
+                // deleteFile(fileInfos[index].key);
+                // isFolder(fileInfos[index].key) && setFolders(folders.filter((f) => f.key !== file.key))
                 // setFiles(files.filter((f) => f !== file));
-                // setFileInfo(fileInfo.filter((f) => f.key !== fileInfo[index].key));
+                // setFileInfos(fileInfos.filter((f) => f.key !== fileInfos[index].key));
               }}
             >
               Delete

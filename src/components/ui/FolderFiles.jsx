@@ -4,23 +4,40 @@ import { Storage } from "aws-amplify";
 import { FileContexts } from "../../contexts/FileContexts";
 
 function FolderFiles({ folderInfo }) {
-  const { setFolder, folders, setFolders, upload, setTabIndex } = useContext(FileContexts);
-  const [fileInfo, setFileInfo] = useState([]);
-  const [folderFiles, setFolderFiles] = useState([]);
+  const {
+    setFolder,
+    folders,
+    setFolders,
+    upload,
+    setTabIndex,
+    fileInfos,
+    setFileInfos,
+    folderFiles,
+    setFolderFiles,
+    files,
+    setFiles,
+    folder,
+  } = useContext(FileContexts);
 
-  setFolder(folderInfo.key)
+  setFolder(folderInfo.key);
+
+  console.log(folder);
+  console.log(files);
 
   useEffect(() => {
     async function fetchFolderFiles() {
-      let { results } = await Storage.list(folderInfo.key, { level: "private" });
+      let { results } = await Storage.list(folderInfo.key, {
+        level: "private",
+      });
       results = results.slice(1);
-      setFileInfo(results);
+      setFileInfos(results);
       const folderFiles = await Promise.all(
         results.map(async (file) => {
           return await Storage.get(file.key, { level: "private" });
         })
       );
-      setFolderFiles(folderFiles);
+      // setFolderFiles(folderFiles);
+      setFiles(folderFiles);
     }
 
     fetchFolderFiles();
@@ -29,7 +46,14 @@ function FolderFiles({ folderInfo }) {
   return (
     <div>
       {folderFiles.length > 0 ? (
-        <FileCollection files={folderFiles} folders={folders} setFolders={setFolders} fileInfo={fileInfo} setFileInfo={setFileInfo} setTabIndex={setTabIndex} />
+        <FileCollection
+          // files={folderFiles}
+          // folders={folders}
+          // setFolders={setFolders}
+          // fileInfos={fileInfos}
+          // setFileInfos={setFileInfos}
+          // setTabIndex={setTabIndex}
+        />
       ) : (
         <h2 className="mt-3">Empty folder</h2>
       )}
