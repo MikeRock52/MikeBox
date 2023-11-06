@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card, Menu, MenuItem } from "@aws-amplify/ui-react";
 import getThumbnail, {
   calculateFileSize,
@@ -8,19 +8,20 @@ import getThumbnail, {
 } from "../../utilities";
 import { FiMoreHorizontal } from "react-icons/fi";
 import { deleteFile, shareFile } from "../storage";
+import { FileContexts } from "../../contexts/FileContexts";
 
-function FileCard({
-  index,
-  file,
-  fileInfo,
-  setFileInfo,
-  files,
-  setFiles,
-  folders,
-  setFolders,
-  shareLink,
-  setShareLink,
-}) {
+function FileCard({index, file,}) {
+  const {
+    fileInfo,
+    setFileInfo,
+    files,
+    setFiles,
+    folders,
+    setFolders,
+    shareLink,
+    setShareLink,
+  } = useContext(FileContexts);
+
   return (
     <div className="relative">
       <Card

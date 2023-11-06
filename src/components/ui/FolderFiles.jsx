@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import FileCollection from "./FileCollection";
 import { Storage } from "aws-amplify";
+import { FileContexts } from "../../contexts/FileContexts";
 
-function FolderFiles({ folderInfo, setFolder, folders, setFolders, upload, setTabIndex }) {
+function FolderFiles({ folderInfo }) {
+  const { setFolder, folders, setFolders, upload, setTabIndex } = useContext(FileContexts);
   const [fileInfo, setFileInfo] = useState([]);
   const [folderFiles, setFolderFiles] = useState([]);
 

@@ -3,7 +3,7 @@ import { Input, Flex } from "@aws-amplify/ui-react";
 import { CreateFolder } from "../Icons";
 import { Storage } from "aws-amplify";
 import toast from "react-hot-toast";
-import { FileContexts } from "../component"
+import { FileContexts } from "../../contexts/FileContexts";
 
 function FolderCreator() {
   const [folder, setFolder] = useState("");

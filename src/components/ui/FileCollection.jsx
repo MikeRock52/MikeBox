@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Collection, Alert, ThemeProvider } from "@aws-amplify/ui-react";
 import theme from "./theme";
 import "./files.css";
@@ -6,10 +6,22 @@ import FileCard from "./FileCard";
 import { SearchFile } from "../Icons";
 import { isFolder } from "../../utilities";
 import FileShare from "./FileShare";
+import { FileContexts } from "../../contexts/FileContexts";
 
-function FileCollection({ files, setFiles, fileInfo, setFileInfo, folders, setFolders, setTabIndex }) {
-  const [search, setSearch] = useState(false);
-  const [shareLink, setShareLink] = useState("");
+function FileCollection() {
+  const {
+    files,
+    setFiles,
+    fileInfo,
+    setFileInfo,
+    folders,
+    setFolders,
+    setTabIndex,
+    shareLink,
+    setShareLink,
+    search,
+    setSearch,
+  } = useContext(FileContexts);
 
   return (
     <div className="mb-12 mt-8">
@@ -28,7 +40,9 @@ function FileCollection({ files, setFiles, fileInfo, setFileInfo, folders, setFo
             backgroundColor="#d9f99d"
             hasIcon={true}
             heading="Shared Link Created"
-            onDismiss={() => {setShareLink("")}}
+            onDismiss={() => {
+              setShareLink("");
+            }}
           >
             <h3 className="my-1">
               You can share your file using the link below
@@ -55,18 +69,7 @@ function FileCollection({ files, setFiles, fileInfo, setFileInfo, folders, setFo
         >
           {(file, index) => {
             return !isFolder(fileInfo[index].key) ? (
-              
-                <FileCard
-                  key={index}
-                  file={file}
-                  index={index}
-                  fileInfo={fileInfo}
-                  setFileInfo={setFileInfo}
-                  shareLink={shareLink}
-                  setShareLink={setShareLink}
-                  setFiles={setFiles}
-                  files={files}
-                />
+              <FileCard key={index} file={file} index={index} />
             ) : (
               <div
                 className="cursor-pointer"
@@ -77,18 +80,7 @@ function FileCollection({ files, setFiles, fileInfo, setFileInfo, folders, setFo
                   );
                 }}
               >
-                <FileCard
-                  file={file}
-                  index={index}
-                  fileInfo={fileInfo}
-                  setFileInfo={setFileInfo}
-                  shareLink={shareLink}
-                  setShareLink={setShareLink}
-                  folders={folders}
-                  setFolders={setFolders}
-                  files={files}
-                  setFiles={setFiles}
-                />
+                <FileCard key={index} file={file} index={index} />
               </div>
             );
           }}

@@ -1,16 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Storage } from "aws-amplify";
 import { Tabs, TabItem } from "@aws-amplify/ui-react";
 import "./files.css";
 import FileCollection from "./FileCollection";
 import { isFolder } from "../../utilities";
 import FolderFiles from "./FolderFiles";
+import { FileContexts } from "../../contexts/FileContexts";
 
-function FileList({ upload, setFolder, createFolder }) {
-  const [fileInfo, setFileInfo] = useState([]);
-  const [files, setFiles] = useState([]);
-  const [folders, setFolders] = useState([]);
-  const [ tabIndex, setTabIndex ] = useState(0);
+function FileList() {
+  const {
+    upload,
+    setFolder,
+    createFolder,
+    fileInfo,
+    setFileInfo,
+    files,
+    setFiles,
+    folders,
+    setFolders,
+    tabIndex,
+    setTabIndex,
+  } = useContext(FileContexts);
 
   useEffect(() => {
     async function fetchAllFiles() {
@@ -19,9 +29,11 @@ function FileList({ upload, setFolder, createFolder }) {
 
         console.log(results);
 
-        setFolders(results.filter((file) => {
+        setFolders(
+          results.filter((file) => {
             return isFolder(file.key) === true;
-          }))
+          })
+        );
 
         const justFiles = results.filter((file) => {
           return !isFolder(file.key);
@@ -52,12 +64,13 @@ function FileList({ upload, setFolder, createFolder }) {
         borderColor="#a3e635"
       >
         <TabItem title="All Files" onClick={() => setFolder("")}>
-          <FileCollection files={files} setFiles={setFiles} fileInfo={fileInfo} setFileInfo={setFileInfo} folders={folders} />
+          <FileCollection />
         </TabItem>
         {folders.map((folder, index) => {
           return (
             <TabItem title={folder.key} key={index}>
               <FolderFiles
+                key={index}
                 folderInfo={folder}
                 setFolder={setFolder}
                 upload={upload}

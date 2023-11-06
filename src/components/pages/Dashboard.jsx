@@ -10,21 +10,24 @@ import TestComponent from "../TestComponent";
 function Dashboard() {
   const [upload, setUpload] = useState(false);
   const [createFolder, setCreateFolder] = useState(false);
-  const [folder, setFolder] = useState("");
+  const [folder, setFolder] = useState("/");
   const [showFiles, setShowFiles] = useState(true);
+  const [fileInfos, setFileInfos] = useState([]);
+  const [files, setFiles] = useState([]);
+  const [folders, setFolders] = useState([]);
+  const [ tabIndex, setTabIndex ] = useState(0);
+  const [search, setSearch] = useState(false);
+  const [shareLink, setShareLink] = useState("");
 
   return (
     <div className="">
       <FileContexts.Provider
         value={{
-          setUpload,
-          upload,
-          createFolder,
-          setCreateFolder,
-          showFiles,
-          setShowFiles,
-          folder,
-          setFolder,
+          setUpload, upload, createFolder, setCreateFolder,
+          showFiles, setShowFiles, folder, setFolder,
+          fileInfos, setFileInfos, files, setFiles,
+          folders, setFolders, tabIndex, setTabIndex,
+          search, setSearch, shareLink, setShareLink,
         }}
       >
         <div className="mx-5 md:mx-12">
