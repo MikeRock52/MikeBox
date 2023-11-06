@@ -16,12 +16,17 @@ function FileCollection() {
     setFileInfos,
     folders,
     setFolders,
+    folder,
+    setFolder,
     setTabIndex,
     shareLink,
     setShareLink,
     search,
     setSearch,
   } = useContext(FileContexts);
+
+  console.log(files);
+  console.log(folder);
 
   return (
     <div className="mb-12 mt-8">
@@ -68,17 +73,20 @@ function FileCollection() {
           searchPlaceholder="Type to search file..."
         >
           {(file, index) => {
-            console.log(file)
             return !isFolder(fileInfos[index].key) ? (
-              <FileCard key={index} file={file} index={index} />
+              <a href={file} target="_blank" rel="noreferrer noopener">
+                <FileCard key={index} file={file} index={index} />
+              </a>
             ) : (
               <div
                 className="cursor-pointer"
                 key={index}
                 onClick={() => {
-                  setTabIndex(
-                    folders.findIndex((f) => f.key === fileInfos[index].key) + 1
-                  );
+                  setTabIndex(index + 1);
+                  setFolder(folders[index].key);
+                  // setTabIndex(
+                  //   folders.findIndex((f) => f.key === fileInfos[index].key) + 1
+                  // );
                 }}
               >
                 <FileCard key={index} file={file} index={index} />

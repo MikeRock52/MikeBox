@@ -21,27 +21,27 @@ function FolderFiles({ folderInfo }) {
 
   setFolder(folderInfo.key);
 
-  console.log(folder);
-  console.log(files);
+  // console.log(folder);
+  // console.log(files);
 
   useEffect(() => {
-    async function fetchFolderFiles() {
-      let { results } = await Storage.list(folderInfo.key, {
-        level: "private",
-      });
-      results = results.slice(1);
-      setFileInfos(results);
-      const folderFiles = await Promise.all(
-        results.map(async (file) => {
-          return await Storage.get(file.key, { level: "private" });
-        })
-      );
-      // setFolderFiles(folderFiles);
-      setFiles(folderFiles);
-    }
+    // async function fetchFolderFiles() {
+    //   let { results } = await Storage.list(folderInfo.key, {
+    //     level: "private",
+    //   });
+    //   results = results.slice(1);
+    //   setFileInfos(results);
+    //   const folderFiles = await Promise.all(
+    //     results.map(async (file) => {
+    //       return await Storage.get(file.key, { level: "private" });
+    //     })
+    //   );
+    //   // setFolderFiles(folderFiles);
+    //   setFiles(folderFiles);
+    // }
 
-    fetchFolderFiles();
-  }, [folderInfo.key, upload]);
+    // fetchFolderFiles();
+  }, [folderInfo.key, upload, files]);
 
   return (
     <div>

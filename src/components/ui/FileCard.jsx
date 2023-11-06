@@ -33,8 +33,7 @@ function FileCard({index, file,}) {
         height="200px"
         className="group hover:opacity-75"
       >
-        <a href={file} target="_blank" rel="noreferrer noopener">
-          <img
+        <img
             src={getThumbnail(fileInfos[index]) || file}
             alt={fileInfos[index].key}
             className="h-full w-full object-contain"
@@ -52,7 +51,6 @@ function FileCard({index, file,}) {
                 ` ~ ${calculateFileSize(fileInfos[index].size)}`}
             </p>
           </div>
-        </a>
         <div className="absolute top-0 left-0 ml-3 mt-4 text-black">
           <Menu
             trigger={

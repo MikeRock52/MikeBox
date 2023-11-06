@@ -40,18 +40,21 @@ function FileList() {
     <div className="mt-16 mx-5">
       <Tabs
         currentIndex={tabIndex}
-        onChange={(i) => setTabIndex(i)}
+        onChange={(i) => {
+          setFolder(i === '0' ? "/" : folders[i - 1].key);
+          setTabIndex(i);
+        }}
         justifyContent="flex-start"
         borderColor="#a3e635"
       >
-        <TabItem title="All Files" onClick={() => setFolder("/")}>
+        <TabItem title="All Files">
           <FileCollection />
         </TabItem>
         {folders.map((folder, index) => {
           return (
             <TabItem title={folder.key} key={index}>
-              {/* <FileCollection /> */}
-              <FolderFiles
+              <FileCollection />
+              {/* <FolderFiles
                 key={index}
                 folderInfo={folder}
                 // setFolder={setFolder}
@@ -59,7 +62,7 @@ function FileList() {
                 // folders={folders}
                 // setFolders={setFolders}
                 // setTabIndex={setTabIndex}
-              />
+              /> */}
             </TabItem>
           );
         })}
