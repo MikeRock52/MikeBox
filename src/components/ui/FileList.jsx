@@ -62,6 +62,7 @@ function FileList({ upload, setFolder, createFolder }) {
                 setFolder={setFolder}
                 upload={upload}
                 folders={folders}
+                setFolders={setFolders}
                 setTabIndex={setTabIndex}
               />
             </TabItem>

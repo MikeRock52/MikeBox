@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { UploadIcon, CreateFolder, ToFolder, ViewFiles } from "../Icons";
+import { FileContexts } from "../../contexts/FileContexts";
 
-function FileActions({
-  upload,
-  setUpload,
-  createFolder,
-  setCreateFolder,
-  showFiles,
-  setShowFiles,
-}) {
+function FileActions(
+  // upload,
+  // setUpload,
+  // createFolder,
+  // setCreateFolder,
+  // showFiles,
+  // setShowFiles,
+) {
+  const {upload, setUpload, createFolder, setCreateFolder, showFiles, setShowFiles} = useContext(FileContexts);
+
   return (
     <div className="flex justify-center flex-wrap mt-8">
       <button

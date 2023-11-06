@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Input, Flex } from "@aws-amplify/ui-react";
 import { CreateFolder } from "../Icons";
 import { Storage } from "aws-amplify";
 import toast from "react-hot-toast";
+import { FileContexts } from "../component"
 
-function FolderCreator({ setCreateFolder, currentFolder }) {
+function FolderCreator() {
   const [folder, setFolder] = useState("");
+  const { setCreateFolder, folder: currentFolder } = useContext(FileContexts);
 
   async function createFolder() {
     try {
