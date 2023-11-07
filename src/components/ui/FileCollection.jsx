@@ -25,8 +25,6 @@ function FileCollection() {
     setSearch,
   } = useContext(FileContexts);
 
-  console.log(files);
-  console.log(folder);
 
   return (
     <div className="mb-12 mt-8">
