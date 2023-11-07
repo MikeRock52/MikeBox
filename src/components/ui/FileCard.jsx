@@ -7,8 +7,9 @@ import getThumbnail, {
   isFolder,
 } from "../../utilities";
 import { FiMoreHorizontal } from "react-icons/fi";
-import { deleteFile, shareFile } from "../storage";
+import { deleteFile, fetchAllFiles, shareFile } from "../storage";
 import { FileContexts } from "../../contexts/FileContexts";
+import { Storage } from "aws-amplify";
 
 function FileCard({ index, file }) {
   const {
@@ -63,8 +64,9 @@ function FileCard({ index, file }) {
             className="cursor-pointer inline"
             key={index}
             onClick={() => {
+              console.log(folders[index - 1])
               setTabIndex(index + 1);
-              setFolder(folders[index].key);
+              // setFolder(folders[index].key);
             }}
           >
             <img
@@ -109,11 +111,18 @@ function FileCard({ index, file }) {
               </MenuItem>
             )}
             <MenuItem
-              onClick={() => {
-                console.log(files);
-                console.log(fileInfos);
-                deleteFile(fileInfos[index].key);
-                // isFolder(fileInfos[index].key) && setFolders(folders.filter((f) => f.key !== file.key))
+              onClick={async () => {
+                if (isFolder(fileInfos[index].key)) {
+                  const folderFiles = await Storage.list(fileInfos[index].key, {level: "private"});
+                  for (const file of folderFiles) {
+                    // deleteFile(file.key);
+                    const fileIndex = fileInfos.findIndex((f) => f.key === file.key);
+                    setFileInfos(fileInfos.filter((f, idx) => idx !== fileIndex));
+                    setFiles(files.filter((f, idx) => idx !== fileIndex));
+                  }
+                }
+                // deleteFile(fileInfos[index].key);
+                // isFolder(fileInfos[index].key) && setFolders(folders.filter((f) => f.key !== fileInfos[index].key));
                 // setFiles(files.filter((f) => f !== file));
                 // setFileInfos(fileInfos.filter((f) => f.key !== fileInfos[index].key));
               }}

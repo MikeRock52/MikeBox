@@ -33,7 +33,7 @@ async function fetchAllFiles(folderKey) {
         return await Storage.get(file.key, { level: "private" });
       })
     );
-    return {files, folders, fileInfos: results};
+    return {files, folders, fileInfos: [...folders, ...justFiles]};
   } catch (error) {
     console.log(error);
     return false;
