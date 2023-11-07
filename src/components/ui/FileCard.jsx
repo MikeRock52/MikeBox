@@ -10,7 +10,7 @@ import { FiMoreHorizontal } from "react-icons/fi";
 import { deleteFile, shareFile } from "../storage";
 import { FileContexts } from "../../contexts/FileContexts";
 
-function FileCard({index, file,}) {
+function FileCard({ index, file }) {
   const {
     fileInfos,
     setFileInfos,
@@ -20,6 +20,8 @@ function FileCard({index, file,}) {
     setFolders,
     shareLink,
     setShareLink,
+    setTabIndex,
+    setFolder,
   } = useContext(FileContexts);
 
   return (
@@ -33,24 +35,60 @@ function FileCard({index, file,}) {
         height="200px"
         className="group hover:opacity-75"
       >
-        <img
-            src={getThumbnail(fileInfos[index]) || file}
-            alt={fileInfos[index].key}
-            className="h-full w-full object-contain"
-          />
-          <div className="absolute top-0 left-0 opacity-75 h-full w-full bg-lime-200 invisible group-hover:visible" />
-          <div className="absolute bottom-0 left-0 ml-3 mb-4 w-fit text-left text-black invisible group-hover:visible">
-            <h4 className="font-bold mr-2">
-              {getFileName(fileInfos[index].key)}
-            </h4>
-            <p className="mt-1">
-              {getFileExtension(
-                isFolder(fileInfos[index].key) ? "FOLDER" : fileInfos[index].key
-              ).toUpperCase()}
-              {!isFolder(fileInfos[index].key) &&
-                ` ~ ${calculateFileSize(fileInfos[index].size)}`}
-            </p>
+        {!isFolder(fileInfos[index].key) ? (
+          <a href={file} target="_blank" rel="noreferrer noopener">
+            <img
+              src={getThumbnail(fileInfos[index]) || file}
+              alt={fileInfos[index].key}
+              className="h-full w-full object-contain"
+            />
+            <div className="absolute top-0 left-0 opacity-75 h-full w-full bg-lime-200 invisible group-hover:visible" />
+            <div className="absolute bottom-0 left-0 ml-3 mb-4 w-fit text-left text-black invisible group-hover:visible">
+              <h4 className="font-bold mr-2">
+                {getFileName(fileInfos[index].key)}
+              </h4>
+              <p className="mt-1">
+                {getFileExtension(
+                  isFolder(fileInfos[index].key)
+                    ? "FOLDER"
+                    : fileInfos[index].key
+                ).toUpperCase()}
+                {!isFolder(fileInfos[index].key) &&
+                  ` ~ ${calculateFileSize(fileInfos[index].size)}`}
+              </p>
+            </div>
+          </a>
+        ) : (
+          <div
+            className="cursor-pointer inline"
+            key={index}
+            onClick={() => {
+              setTabIndex(index + 1);
+              setFolder(folders[index].key);
+            }}
+          >
+            <img
+              src={getThumbnail(fileInfos[index]) || file}
+              alt={fileInfos[index].key}
+              className="h-full w-full object-contain"
+            />
+            <div className="absolute top-0 left-0 opacity-75 h-full w-full bg-lime-200 invisible group-hover:visible" />
+            <div className="absolute bottom-0 left-0 ml-3 mb-4 w-fit text-left text-black invisible group-hover:visible">
+              <h4 className="font-bold mr-2">
+                {getFileName(fileInfos[index].key)}
+              </h4>
+              <p className="mt-1">
+                {getFileExtension(
+                  isFolder(fileInfos[index].key)
+                    ? "FOLDER"
+                    : fileInfos[index].key
+                ).toUpperCase()}
+                {!isFolder(fileInfos[index].key) &&
+                  ` ~ ${calculateFileSize(fileInfos[index].size)}`}
+              </p>
+            </div>
           </div>
+        )}
         <div className="absolute top-0 left-0 ml-3 mt-4 text-black">
           <Menu
             trigger={
@@ -61,17 +99,20 @@ function FileCard({index, file,}) {
             backgroundColor="#fff"
           >
             <MenuItem>Rename</MenuItem>
-            <MenuItem
-              onClick={async () => {
-                setShareLink(await shareFile(fileInfos[index].key));
-              }}
-            >
-              Share
-            </MenuItem>
+            {!isFolder(fileInfos[index].key) && (
+              <MenuItem
+                onClick={async () => {
+                  setShareLink(await shareFile(fileInfos[index].key));
+                }}
+              >
+                Share
+              </MenuItem>
+            )}
             <MenuItem
               onClick={() => {
                 console.log(files);
-                // deleteFile(fileInfos[index].key);
+                console.log(fileInfos);
+                deleteFile(fileInfos[index].key);
                 // isFolder(fileInfos[index].key) && setFolders(folders.filter((f) => f.key !== file.key))
                 // setFiles(files.filter((f) => f !== file));
                 // setFileInfos(fileInfos.filter((f) => f.key !== fileInfos[index].key));

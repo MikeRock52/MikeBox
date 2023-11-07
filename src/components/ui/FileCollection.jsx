@@ -74,23 +74,21 @@ function FileCollection() {
         >
           {(file, index) => {
             return !isFolder(fileInfos[index].key) ? (
-              <a href={file} target="_blank" rel="noreferrer noopener">
-                <FileCard key={index} file={file} index={index} />
-              </a>
+              <FileCard key={index} file={file} index={index} />
             ) : (
-              <div
-                className="cursor-pointer"
-                key={index}
-                onClick={() => {
-                  setTabIndex(index + 1);
-                  setFolder(folders[index].key);
-                  // setTabIndex(
-                  //   folders.findIndex((f) => f.key === fileInfos[index].key) + 1
-                  // );
-                }}
-              >
+              // <div
+              //   className="cursor-pointer"
+              //   key={index}
+              //   onClick={() => {
+              //     setTabIndex(index + 1);
+              //     setFolder(folders[index].key);
+              //     // setTabIndex(
+              //     //   folders.findIndex((f) => f.key === fileInfos[index].key) + 1
+              //     // );
+              //   }}
+              // >
                 <FileCard key={index} file={file} index={index} />
-              </div>
+              // </div>
             );
           }}
         </Collection>
