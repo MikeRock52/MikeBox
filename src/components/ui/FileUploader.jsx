@@ -2,10 +2,10 @@ import React, { useState, useContext } from "react";
 import { StorageManager } from "@aws-amplify/ui-react-storage";
 import toast from "react-hot-toast";
 import { FileContexts } from "../../contexts/FileContexts";
+import { getFileName } from "../../utilities";
 
 function FileUploader() {
   const { setUpload, folder } = useContext(FileContexts);
-  const [fileName, setFileName] = useState("");
 
   return (
     <div className="mt-8 sm:w-4/5 md:w-4/6 lg:w-3/6 mx-auto">
@@ -22,8 +22,8 @@ function FileUploader() {
             key,
           };
         }}
-        onUploadSuccess={() => {
-          toast.success("File(s) uploaded successfully!");
+        onUploadSuccess={({ key }) => {
+          toast.success(`${getFileName(key)} uploaded successfully!`);
           setUpload(false);
         }}
         onUploadError={() => {
