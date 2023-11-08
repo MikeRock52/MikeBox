@@ -22,6 +22,7 @@ function FileList() {
     setFolders,
     tabIndex,
     setTabIndex,
+    render,
   } = useContext(FileContexts);
 
 
@@ -34,7 +35,7 @@ function FileList() {
 
   useEffect(() => {
     fetchFiles();
-  }, [upload, createFolder, folder]);
+  }, [upload, createFolder, folder, render]);
 
   return (
     <div className="mt-16 mx-5">
@@ -52,7 +53,7 @@ function FileList() {
         </TabItem>
         {folders.map((folder, index) => {
           return (
-            <TabItem title={folder.key} key={index}>
+            <TabItem title={folder.key.slice(0, -1)} key={index}>
               <FileCollection />
             </TabItem>
           );

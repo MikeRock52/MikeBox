@@ -24,6 +24,7 @@ function FileCard({ index, file }) {
     setTabIndex,
     tabIndex,
     setFolder,
+    render, setRender,
   } = useContext(FileContexts);
 
   return (
@@ -113,24 +114,25 @@ function FileCard({ index, file }) {
             <MenuItem
               onClick={async () => {
                 const key = fileInfos[index].key;
-                let fileIndex;
-                console.log(key);
+                // let fileIndex;
+                console.log(files);
+                deleteFile(key);
+                isFolder(key) && setFolders(folders.filter((f) => f.key !== key));
+                setFiles(files.filter((f) => f !== file));
+                setFileInfos(fileInfos.filter((f) => f.key !== key));
 
                 if (isFolder(key)) {
                   const { results } = await Storage.list(key, {level: "private"});
                   for (const file of results) {
                     await Storage.remove(file.key, { level: "private" });
-                    const fileIndex = fileInfos.findIndex((f) => f.key === file.key);
-                    setFileInfos(fileInfos.filter((f, idx) => idx !== fileIndex));
-                    setFiles(files.filter((f, idx) => idx !== fileIndex));
+                    // const fileIndex = fileInfos.findIndex((f) => f.key === file.key);
+                    // setFileInfos(fileInfos.filter((f, idx) => idx !== fileIndex));
+                    // setFiles(files.filter((f, idx) => idx !== fileIndex));
                   }
-                  fileIndex = fileInfos.findIndex((f) => f.key === key);
-                  setFolders(folders.filter((f) => f.key !== fileInfos[fileIndex].key));
+                  // const fileIndex = fileInfos.findIndex((f) => f.key === key);
+                  // setFolders(folders.filter((f) => f.key !== fileInfos[fileIndex].key));
                 }
-                deleteFile(fileInfos[fileIndex].key);
-                isFolder(fileInfos[fileIndex].key) && setFolders(folders.filter((f) => f.key !== fileInfos[fileIndex].key));
-                setFiles(files.filter((f) => f !== file));
-                setFileInfos(fileInfos.filter((f) => f.key !== fileInfos[fileIndex].key));
+                isFolder(key) && setRender(!render);
               }}
             >
               Delete

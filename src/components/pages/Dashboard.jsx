@@ -18,6 +18,7 @@ function Dashboard() {
   const [ tabIndex, setTabIndex ] = useState(0);
   const [search, setSearch] = useState(false);
   const [shareLink, setShareLink] = useState("");
+  const [ render, setRender ] = useState(false);
 
   return (
     <div className="">
@@ -28,7 +29,7 @@ function Dashboard() {
           fileInfos, setFileInfos, files, setFiles,
           folders, setFolders, tabIndex, setTabIndex,
           search, setSearch, shareLink, setShareLink,
-          folderFiles, setFolderFiles,
+          folderFiles, setFolderFiles, render, setRender,
         }}
       >
         <div className="mx-5 md:mx-12">
