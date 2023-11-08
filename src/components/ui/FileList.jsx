@@ -29,7 +29,7 @@ function FileList() {
     const fileData = await fetchAllFiles(folder);
     setFiles(fileData.files);
     setFileInfos(fileData.fileInfos);
-    setFolders(fileData.folders);
+    folder === '/' && setFolders(fileData.folders);
   }
 
   useEffect(() => {
@@ -54,15 +54,6 @@ function FileList() {
           return (
             <TabItem title={folder.key} key={index}>
               <FileCollection />
-              {/* <FolderFiles
-                key={index}
-                folderInfo={folder}
-                // setFolder={setFolder}
-                // upload={upload}
-                // folders={folders}
-                // setFolders={setFolders}
-                // setTabIndex={setTabIndex}
-              /> */}
             </TabItem>
           );
         })}

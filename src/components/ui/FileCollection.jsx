@@ -25,7 +25,6 @@ function FileCollection() {
     setSearch,
   } = useContext(FileContexts);
 
-
   return (
     <div className="mb-12 mt-8">
       <button
@@ -71,23 +70,13 @@ function FileCollection() {
           searchPlaceholder="Type to search file..."
         >
           {(file, index) => {
-            return !isFolder(fileInfos[index].key) ? (
-              <FileCard key={index} file={file} index={index} />
-            ) : (
-              // <div
-              //   className="cursor-pointer"
-              //   key={index}
-              //   onClick={() => {
-              //     setTabIndex(index + 1);
-              //     setFolder(folders[index].key);
-              //     // setTabIndex(
-              //     //   folders.findIndex((f) => f.key === fileInfos[index].key) + 1
-              //     // );
-              //   }}
-              // >
-                <FileCard key={index} file={file} index={index} />
-              // </div>
-            );
+            if (!isFolder(fileInfos[index].key)) {
+              return <FileCard key={index} file={file} index={index} />
+            } else {
+              if (fileInfos[index].key !== folder) {
+                return <FileCard key={index} file={file} index={index} />
+              }
+            }
           }}
         </Collection>
       </ThemeProvider>

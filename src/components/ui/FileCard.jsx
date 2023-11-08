@@ -66,9 +66,6 @@ function FileCard({ index, file }) {
             key={index}
             onClick={() => {
               setTabIndex(index + 1);
-              // console.log(index)
-              // console.log(tabIndex);
-              // console.log(folders[index].key)
               setFolder(folders[index].key)
             }}
           >
