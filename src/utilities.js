@@ -23,8 +23,10 @@ function getFileName(fileKey) {
   if (isFolder(fileKey)) {
     return fileKey;
   } else {
-    const parts = fileKey.split('/');
-    return parts[parts.length - 1];
+    let parts = fileKey.split('/');
+    parts = parts[parts.length - 1];
+    parts = parts.slice(parts.indexOf('_') + 1);
+    return parts;
   }
 }
 
