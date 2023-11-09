@@ -131,8 +131,8 @@ function FileCard({ index, file }) {
                   }
                   // const fileIndex = fileInfos.findIndex((f) => f.key === key);
                   // setFolders(folders.filter((f) => f.key !== fileInfos[fileIndex].key));
+                  setRender(!render);
                 }
-                isFolder(key) && setRender(!render);
               }}
             >
               Delete
