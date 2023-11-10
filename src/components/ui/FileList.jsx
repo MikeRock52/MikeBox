@@ -33,7 +33,6 @@ function FileList() {
     folder === '/' && setFolders(fileData.folders);
   }
 
-  console.log(fileInfos);
 
   useEffect(() => {
     fetchFiles();
