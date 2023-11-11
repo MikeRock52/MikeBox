@@ -16,7 +16,7 @@ function FileUploader() {
         maxFileSize={10485760}
         isResumable
         processFile={({ file, key }) => {
-          key = `${folder}${Date.now()}_${key}`;
+          key = `${folder}${key}`;
           return {
             file,
             key,

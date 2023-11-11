@@ -25,7 +25,7 @@ function getFileName(fileKey) {
   } else {
     let parts = fileKey.split('/');
     parts = parts[parts.length - 1];
-    parts = parts.slice(parts.indexOf('_') + 1);
+    // parts = parts.slice(parts.indexOf('_') + 1);
     return parts;
   }
 }
@@ -37,10 +37,6 @@ function calculateFileSize(sizeInBytes) {
   } else {
     return `${(kb / 1024).toFixed(2)}mb`;
   }
-}
-
-function getLatest(file) {
-  if Storage.get();
 }
 
 const icons = {
