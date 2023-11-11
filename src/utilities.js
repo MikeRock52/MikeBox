@@ -39,6 +39,10 @@ function calculateFileSize(sizeInBytes) {
   }
 }
 
+function getLatest(file) {
+  if Storage.get();
+}
+
 const icons = {
   folder: "https://icons.iconarchive.com/icons/uriy1966/steel-system/256/Library-Windows-icon.png",
   file: "https://icons.iconarchive.com/icons/royalflushxx/systematrix/256/Document-icon.png",
