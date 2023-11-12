@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^13.5.0",
     "aws-amplify": "^5.3.11",
     "aws-amplify-react": "^5.1.43",
+    "aws-sdk": "^2.1494.0",
     "formik": "^2.4.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

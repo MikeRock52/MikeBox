@@ -25,8 +25,6 @@ function FileCollection() {
     setSearch,
   } = useContext(FileContexts);
 
-  console.log(fileInfos);
-
   return (
     <div className="mb-12 mt-8">
       <button
