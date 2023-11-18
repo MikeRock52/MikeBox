@@ -28,10 +28,10 @@ function getFileExtension(filename) {
 }
 
 function getFileName(fileKey) {
+  let parts = fileKey.split('/');
   if (isFolder(fileKey)) {
-    return fileKey;
+    return parts[parts.length - 2];
   } else {
-    let parts = fileKey.split('/');
     parts = parts[parts.length - 1];
     // parts = parts.slice(parts.indexOf('_') + 1);
     return parts;
