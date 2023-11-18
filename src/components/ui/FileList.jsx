@@ -7,7 +7,6 @@ import { isFolder } from "../../utilities";
 import FolderFiles from "./FolderFiles";
 import { FileContexts } from "../../contexts/FileContexts";
 import { fetchAllFiles } from "../storage";
-import AWS from "aws-sdk";
 
 function FileList() {
   const {
@@ -28,50 +27,12 @@ function FileList() {
 
 
   async function fetchFiles() {
-    // const fileData = await fetchAllFiles(folder);
-    // setFiles(fileData.files);
-    // setFileInfos(fileData.fileInfos);
-    // folder === '/' && setFolders(fileData.folders);
+    const fileData = await fetchAllFiles(folder);
+    setFiles(fileData.files);
+    setFileInfos(fileData.fileInfos);
+    folder === '/' && setFolders(fileData.folders);
+  }
     
-
-    const s3 = new AWS.S3();
-
-const bucket = 'mydropbox';
-const key = '/3.png';
-
-const params = {
-  Bucket: bucket,
-  Prefix: key,
-};
-
-s3.listObjectVersions(params, (err, data) => {
-  if (err) {
-    console.error(err);
-  } else {
-    console.log(data);
-    // data.Versions.forEach(version => {
-    //   const versionId = version.VersionId;
-      
-    //   // Fetch each version individually
-    //   const getObjectParams = {
-    //     Bucket: bucket,
-    //     Key: key,
-    //     VersionId: versionId,
-    //   };
-
-    //   s3.getObject(getObjectParams, (err, data) => {
-    //     if (err) {
-    //       console.error(err);
-    //     } else {
-    //       // Process the result (data.Body contains the file data)
-    //       console.log(data.Body.toString());
-    //     }
-    //   });
-    // });
-  }
-});
-  }
-
 
   useEffect(() => {
     fetchFiles();
@@ -79,7 +40,7 @@ s3.listObjectVersions(params, (err, data) => {
 
   return (
     <div className="mt-16 mx-5">
-      {/* <Tabs
+      <Tabs
         currentIndex={tabIndex}
         onChange={(i) => {
           setFolder(i === '0' ? "/" : folders[i - 1].key);
@@ -98,7 +59,7 @@ s3.listObjectVersions(params, (err, data) => {
             </TabItem>
           );
         })}
-      </Tabs> */}
+      </Tabs>
     </div>
   );
 }
