@@ -1,12 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Card, Menu, MenuItem } from "@aws-amplify/ui-react";
-import getThumbnail, {
-  calculateFileSize,
-  getFileExtension,
-  getFileName,
-  isFolder,
-  getFolderName,
-} from "../../utilities";
+import getThumbnail, {getFileName, getFolderName,} from "../../utilities";
 import { FiMoreHorizontal } from "react-icons/fi";
 import { deleteFile, renameFolder } from "../storage";
 import { FileContexts } from "../../contexts/FileContexts";
@@ -21,10 +15,7 @@ function FolderCard({ index, file }) {
     setFiles,
     folders,
     setFolders,
-    shareLink,
-    setShareLink,
     setTabIndex,
-    tabIndex,
     setFolder,
     render,
     setRender,
@@ -108,12 +99,7 @@ function FolderCard({ index, file }) {
                 });
                 for (const file of results) {
                   await Storage.remove(file.key, { level: "private" });
-                  // const fileIndex = fileInfos.findIndex((f) => f.key === file.key);
-                  // setFileInfos(fileInfos.filter((f, idx) => idx !== fileIndex));
-                  // setFiles(files.filter((f, idx) => idx !== fileIndex));
                 }
-                // const fileIndex = fileInfos.findIndex((f) => f.key === key);
-                // setFolders(folders.filter((f) => f.key !== fileInfos[fileIndex].key));
                 setRender(!render);
               }}
             >
