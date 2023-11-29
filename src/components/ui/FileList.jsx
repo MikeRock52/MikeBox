@@ -3,7 +3,7 @@ import { Storage } from "aws-amplify";
 import { Tabs, TabItem } from "@aws-amplify/ui-react";
 import "./files.css";
 import FileCollection from "./FileCollection";
-import { isFolder } from "../../utilities";
+import { getFolderName } from "../../utilities";
 import FolderFiles from "./FolderFiles";
 import { FileContexts } from "../../contexts/FileContexts";
 import { fetchAllFiles, fetchFolderFiles } from "../storage";
@@ -48,13 +48,14 @@ function FileList() {
         }}
         justifyContent="flex-start"
         borderColor="#a3e635"
+        className="overflow-x-auto"
       >
         <TabItem title="All Files">
           <FileCollection />
         </TabItem>
         {folders.map((folder, index) => {
           return (
-            <TabItem title={folder.key.slice(0, -1)} key={index}>
+            <TabItem title={getFolderName(folder.key)} key={index}>
               <FileCollection />
             </TabItem>
           );

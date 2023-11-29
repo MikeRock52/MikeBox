@@ -130,8 +130,10 @@ async function renameFolder(oldKey, newName) {
     await Storage.remove(oldKey, { level: "private" });
 
     console.log("Folder renamed successfully.");
+    toast.success("Folder renamed successfully.");
   } catch (error) {
     console.error("Error renaming the folder", error.message);
+    toast.error("Error renaming the folder", error.message);
     throw error;
   }
 }
