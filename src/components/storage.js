@@ -69,15 +69,23 @@ async function deleteFile(fileKey) {
   }
 }
 
-async function renameFile(oldKey, newKey) {
-  try {
-    await Storage.copy(oldKey, newKey, { level: 'private' });
-    await Storage.remove(oldKey, { level: 'private' });
+async function renameFile(oldKey, newName) {
+  const filePath = oldKey.split('/');
+  filePath.pop();
+  const newFileKey = `${filePath.join('/')}/${newName}`;
 
-    toast.success('File renamed successfully.');
+  try {
+    await Storage.copy(
+      { key: oldKey, level: "private" },
+      { key: newFileKey, level: "private" }
+    );
+    await Storage.remove(oldKey, { level: "private" });
+    console.log("File renamed successfully.");
+    toast.success("File renamed successfully.");
   } catch (error) {
-    toast.error('Error renaming the file');
-    console.error(error);
+    console.error("Error renaming the file", error.message);
+    toast.error("Error renaming the file ", error);
+    throw error;
   }
 }
 
