@@ -1,6 +1,6 @@
 import { Storage } from "aws-amplify";
 import toast from "react-hot-toast";
-import { isFolder, getFolderName } from "../utilities";
+import { isFolder, getFolderName, getFileName } from "../utilities";
 
 async function fetchFolderFiles(folderKey) {
   try {
@@ -92,4 +92,48 @@ async function shareFile(fileKey) {
   }
 }
 
-export {deleteFile, renameFile, shareFile, fetchFolderFiles, fetchAllFiles}
+async function renameFolder(oldKey, newName) {
+  try {
+    const oldFolderName = getFolderName(oldKey);
+
+    let { results } = await Storage.list(oldKey, { level: "public" });
+    results = results.slice(1);
+    console.log(results.length);
+    let newFolderKey;
+
+    results.length > 0 &&
+      results.map(async (file) => {
+        console.log(file);
+        const keySplit = oldKey.split("/");
+        // console.log(keySplit)
+        const folderNameIndex = keySplit.indexOf(oldFolderName);
+        keySplit[folderNameIndex] = newName;
+        // console.log(keySplit)
+        newFolderKey = keySplit.join("/");
+        // console.log(newFolderKey)
+        const newFileKey = `${newFolderKey}${
+          isFolder(file.key) ? getFolderName(file.key) + "/" : getFileName(file.key)
+        }`;
+        console.log(newFileKey);
+        await Storage.copy(
+          { key: file.key, level: "private" },
+          { key: newFileKey, level: "private" }
+        );
+        // console.log("Copied");
+        await Storage.remove(file.key, { level: "private" });
+      });
+
+    await Storage.copy(
+      { key: oldKey, level: "private" },
+      { key: newFolderKey, level: "private" }
+    );
+    await Storage.remove(oldKey, { level: "private" });
+
+    console.log("Folder renamed successfully.");
+  } catch (error) {
+    console.error("Error renaming the folder", error.message);
+    throw error;
+  }
+}
+
+export {deleteFile, renameFile, renameFolder, shareFile, fetchFolderFiles, fetchAllFiles}
