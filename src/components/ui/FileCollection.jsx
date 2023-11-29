@@ -3,6 +3,7 @@ import { Collection, Alert, ThemeProvider } from "@aws-amplify/ui-react";
 import theme from "./theme";
 import "./files.css";
 import FileCard from "./FileCard";
+import FolderCard from "./FolderCard";
 import { SearchFile } from "../Icons";
 import { isFolder } from "../../utilities";
 import FileShare from "./FileShare";
@@ -74,7 +75,7 @@ function FileCollection() {
               return <FileCard key={index} file={file} index={index} />
             } else {
               if (fileInfos[index].key !== folder) {
-                return <FileCard key={index} file={file} index={index} />
+                return <FolderCard key={index} file={file} index={index} />
               }
             }
           }}
