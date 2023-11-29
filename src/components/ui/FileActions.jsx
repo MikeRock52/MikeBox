@@ -34,10 +34,10 @@ function FileActions() {
         {CreateFolder()}
         <h4 className="w-fit h-fit mx-auto font-bold">Create Folder</h4>
       </button>
-      <button className="fileAction">
+      {/* <button className="fileAction">
         {ToFolder()}
         <h4 className="w-fit h-fit mx-auto font-bold">Upload to Folder</h4>
-      </button>
+      </button> */}
       <button onClick={() => setShowFiles(!showFiles)} className="fileAction">
         {ViewFiles()}
         <h4 className="w-fit h-fit mx-auto font-bold">
