@@ -96,10 +96,10 @@ async function renameFolder(oldKey, newName) {
   try {
     const oldFolderName = getFolderName(oldKey);
 
-    let { results } = await Storage.list(oldKey, { level: "public" });
+    let { results } = await Storage.list(oldKey, { level: "private" });
     results = results.slice(1);
-    console.log(results.length);
     let newFolderKey;
+    // console.log(results);
 
     results.length > 0 &&
       results.map(async (file) => {
