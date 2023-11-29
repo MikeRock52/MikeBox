@@ -1,15 +1,9 @@
 import React, { useContext, useState } from "react";
 import { Card, Menu, MenuItem } from "@aws-amplify/ui-react";
-import getThumbnail, {
-  calculateFileSize,
-  getFileExtension,
-  getFileName,
-  isFolder,
-} from "../../utilities";
+import getThumbnail, {calculateFileSize, getFileExtension, getFileName} from "../../utilities";
 import { FiMoreHorizontal } from "react-icons/fi";
-import { deleteFile, fetchAllFiles, shareFile, renameFile } from "../storage";
+import { deleteFile, shareFile, renameFile } from "../storage";
 import { FileContexts } from "../../contexts/FileContexts";
-import { Storage } from "aws-amplify";
 import { EditIcon } from "lucide-react";
 
 function FileCard({ index, file }) {
@@ -18,13 +12,7 @@ function FileCard({ index, file }) {
     setFileInfos,
     files,
     setFiles,
-    folders,
-    setFolders,
-    shareLink,
     setShareLink,
-    setTabIndex,
-    tabIndex,
-    setFolder,
     render,
     setRender,
   } = useContext(FileContexts);
