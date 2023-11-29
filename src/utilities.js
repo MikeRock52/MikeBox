@@ -49,6 +49,11 @@ function calculateFileSize(sizeInBytes) {
   }
 }
 
+function getFolderName(folderKey) {
+  const f = folderKey.split("/");
+  return f[f.length - 2];
+}
+
 const imageExtensions = ["jpg", "jpeg", "png", "gif", "bmp", "tiff", "webp",
     "svg", "ico", "jfif", "pjpeg", "pjp", ];
 
@@ -72,4 +77,4 @@ const fileIcons = {
 
 
 export default getThumbnail;
-export { getFileExtension, calculateFileSize, isFolder, getFileName };
+export { getFileExtension, calculateFileSize, isFolder, getFileName, getFolderName };

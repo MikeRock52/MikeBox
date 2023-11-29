@@ -6,7 +6,7 @@ import FileCollection from "./FileCollection";
 import { isFolder } from "../../utilities";
 import FolderFiles from "./FolderFiles";
 import { FileContexts } from "../../contexts/FileContexts";
-import { fetchAllFiles } from "../storage";
+import { fetchAllFiles, fetchFolderFiles } from "../storage";
 
 function FileList() {
   const {
@@ -27,7 +27,7 @@ function FileList() {
 
 
   async function fetchFiles() {
-    const fileData = await fetchAllFiles(folder);
+    const fileData = folder === '/' ? await fetchAllFiles(folder) : await fetchFolderFiles(folder);
     setFiles(fileData.files);
     setFileInfos(fileData.fileInfos);
     folder === '/' && setFolders(fileData.folders);
