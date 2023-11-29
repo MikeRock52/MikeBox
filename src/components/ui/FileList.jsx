@@ -1,10 +1,8 @@
-import React, { useEffect, useState, useContext } from "react";
-import { Storage } from "aws-amplify";
+import React, { useEffect, useContext } from "react";
 import { Tabs, TabItem } from "@aws-amplify/ui-react";
 import "./files.css";
 import FileCollection from "./FileCollection";
 import { getFolderName } from "../../utilities";
-import FolderFiles from "./FolderFiles";
 import { FileContexts } from "../../contexts/FileContexts";
 import { fetchAllFiles, fetchFolderFiles } from "../storage";
 
@@ -14,9 +12,7 @@ function FileList() {
     folder,
     setFolder,
     createFolder,
-    fileInfos,
     setFileInfos,
-    files,
     setFiles,
     folders,
     setFolders,

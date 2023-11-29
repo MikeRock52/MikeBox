@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Collection, Alert, ThemeProvider } from "@aws-amplify/ui-react";
 import theme from "./theme";
 import "./files.css";
@@ -12,14 +12,8 @@ import { FileContexts } from "../../contexts/FileContexts";
 function FileCollection() {
   const {
     files,
-    setFiles,
     fileInfos,
-    setFileInfos,
-    folders,
-    setFolders,
     folder,
-    setFolder,
-    setTabIndex,
     shareLink,
     setShareLink,
     search,
