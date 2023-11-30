@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { UploadIcon, CreateFolder, ToFolder, ViewFiles } from "../Icons";
+import { UploadIcon, CreateFolder, ViewFiles } from "../Icons";
 import { FileContexts } from "../../contexts/FileContexts";
 
 function FileActions() {
